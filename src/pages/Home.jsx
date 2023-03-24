@@ -8,7 +8,9 @@ function Home() {
     <>
       <GlobalStyle />
       <Nav />
-      <Banner />
+      <div style={{ margin: '0 auto', maxWidth: '1200px' }}>
+        <Banner />
+      </div>
     </>
   );
 }

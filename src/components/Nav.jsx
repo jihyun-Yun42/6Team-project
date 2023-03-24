@@ -9,7 +9,7 @@ function Nav() {
   return (
     <NavMenu>
       <NavContainer>
-        <NavLogo src="/burgerkingLogo.png" onClick={() => navi('/')} />
+        <NavLogo src="../assets/burgerkingLogo.png" onClick={() => navi('/')} />
         <ListTitle>
           <MenuTitle>
             <ul>
