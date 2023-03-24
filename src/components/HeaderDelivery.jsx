@@ -1,9 +1,11 @@
-import React from 'react'
 import styled from 'styled-components'
 import Button from '../components/Button'
 import LogoImg from'../assets/burgerkingLogo.png'
+import { useNavigate } from 'react-router'
+
 
 function HeaderDelivery() {
+  const navi =useNavigate();
   return (<>
     <HeaderWrap>
       <HeaderContainer>
@@ -14,7 +16,7 @@ function HeaderDelivery() {
         <UtilA><span>로그인</span></UtilA>
         <UtilA><span>고객센터</span></UtilA>
         </ UtilWrap>
-        <Join><Button>회원가입</Button></Join>
+        <Join><Button onClick={()=>navi('/deliveryHome')}>회원가입</Button></Join>
       </Container>
       </HeaderContainer>    
     </HeaderWrap>
