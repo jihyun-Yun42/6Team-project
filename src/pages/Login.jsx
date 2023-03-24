@@ -1,11 +1,41 @@
-import React from 'react'
+import jwtDecode from 'jwt-decode'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 import styled from 'styled-components'
+import { apis } from '../axios/api'
 import Button from '../components/Button'
 import FooterDelivery from '../components/FooterDelivery'
 import HeaderDelivery from '../components/HeaderDelivery'
 import NavDelivery from '../components/NavDelivery'
+import { cookies } from '../shared/cookies'
 
 function Login() {
+  const navi =useNavigate();
+  const [user,setUser]=useState({
+    username:'',
+    password:'',
+  });
+  const changeInputHandler = (event) => {
+    const { value, name } = event.target;
+    setUser((old) => {
+      return { ...old, [name]: value };
+    });
+  };
+
+  const submitHandler= async (event)=>{
+    event.preventDefault();
+    try{
+      const result =await apis.post("/api/login",user)
+      const token =result.headers.authorization.split(' ')[1]
+      const decodeToken = jwtDecode(token)
+      cookies.set("token",token,{path:"/"})
+      cookies.set("userId",decodeToken.sub,{path:"/"})
+      alert('로그인성공')
+      navi('/deliveryHome')
+    }catch(event){
+      console.log("ErrorEvent",event);
+    }
+  }
 
 
   return (
@@ -18,12 +48,12 @@ function Login() {
       <LoginUI>
         <LoginArea>
           <div>일반로그인</div>
-          <LogInForm>
-            <input placeholder='아이디(이메일)'/>
-            <input placeholder='비밀번호'/>
+          <LogInForm onSubmit={submitHandler}>
+            <input type='text'placeholder='아이디(이메일)' value={user.username} name="username" onChange={changeInputHandler}/>
+            <input type='password'placeholder='비밀번호' value={user.password} name="password" onChange={changeInputHandler} />
             <div>
-              <Button>로그인</Button>
-              <Button>회원가입</Button>
+              <Button type='submit'>로그인</Button>
+              <Button type='button'onClick={()=>navi('/deliveryHome')}>회원가입</Button>
             </div>
             <div>
               <span>아이디찾기</span>
