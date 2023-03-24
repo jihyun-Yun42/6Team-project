@@ -47,7 +47,7 @@ const UtilA =styled.a`
 `
 
 const HeaderWrap=styled.div`
-    position: fixed;
+    /* position: fixed; */
     left: 0;
     top: 0;
     right: 0;
