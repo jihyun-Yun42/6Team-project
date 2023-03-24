@@ -14,15 +14,25 @@ function Nav() {
           <MenuTitle>
             <ul>
               <Flex>
-                <MenuNavList>메뉴소개</MenuNavList>
-                <MenuNavList>매장찾기</MenuNavList>
-                <MenuNavList>이벤트</MenuNavList>
-                <MenuNavList>브랜드스토리</MenuNavList>
+                <MenuNavList>
+                  <ClickNavBtn>메뉴소개</ClickNavBtn>
+                </MenuNavList>
+                <MenuNavList>
+                  <ClickNavBtn>매장찾기</ClickNavBtn>
+                </MenuNavList>
+                <MenuNavList>
+                  <ClickNavBtn>이벤트</ClickNavBtn>
+                </MenuNavList>
+                <MenuNavList>
+                  <ClickNavBtn>브랜드스토리</ClickNavBtn>
+                </MenuNavList>
               </Flex>
             </ul>
           </MenuTitle>
           <HiddenList className="hiddenText">안녕 난 숨겨져있어</HiddenList>
-          <Button brown>가맹점 문의</Button>
+          <Button brown onClick={() => navi('/login')}>
+            로그인
+          </Button>
           <Button onClick={() => navi('/deliveryHome')}>딜리버리 주문</Button>
         </ListTitle>
       </NavContainer>
@@ -65,10 +75,8 @@ const ListTitle = styled.div`
 
 const MenuTitle = styled.div`
   position: relative;
-  font-size: 1.375rem;
   width: 65%;
   margin-left: 5%;
-  font-weight: 700;
   &:hover ~ .hiddenText {
     height: 100px;
     background-color: white;
@@ -100,4 +108,11 @@ const MenuNavList = styled.li`
   width: 25%;
 `;
 
+const ClickNavBtn = styled.button`
+  border: 0px;
+  font-size: 1.375rem;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: transparent;
+`;
 export default Nav;
