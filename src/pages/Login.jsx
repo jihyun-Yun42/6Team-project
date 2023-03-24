@@ -9,7 +9,8 @@ function Login() {
     <>
     <HeaderDelivery/>
     <NavDelivery/>
-    <StyledDiv></StyledDiv>
+    <LoginContainer>로그인 구역</LoginContainer>
+    <NoneUserContainer>비회원구역</NoneUserContainer>
     <FooterDelivery/>
     </>
   )
@@ -17,7 +18,11 @@ function Login() {
 
 export default Login
 
-const StyledDiv =styled.div`
-  height: 1000px;
+const LoginContainer =styled.div`
+  height: 734px;
   background-color: #ffffff;
+`
+const NoneUserContainer =styled.div`
+  background-color: #F2EBE6;
+  height: 465px;
 `
