@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import buergerkingLogo from '../assets/burgerkingLogo.png'
 import Button from '../components/Button'
+import LogoImg from'../assets/burgerkingLogo.png'
+
 function HeaderDelivery() {
   return (<>
     <HeaderWrap>
       <HeaderContainer>
       <Container>
-        <LogoH1><span>버거킹</span></LogoH1>
+        <LogoH1><img src={`${LogoImg}` } style={{'width':'60px'}}/><span>버거킹</span></LogoH1>
         < UtilWrap>
         <UtilA><span>브랜드홈</span></UtilA>
         <UtilA><span>로그인</span></UtilA>
@@ -80,6 +81,6 @@ const LogoH1 =styled.h1`
     color: #fff;
     text-indent: 0;
     line-height: 120px;
-    /* background: url(../assets/burgerkingLogo.png) no-repeat 0; */
+    background-image: url({LogoImg}) no-repeat 0;
     cursor: pointer;
 `
