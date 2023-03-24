@@ -1,23 +1,30 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import Button from './Button';
 import { Flex } from './Flex';
 
 function Nav() {
+  const navi = useNavigate();
   return (
     <NavMenu>
       <NavContainer>
-        <NavLogo src="/burgerkingLogo.png" />
-        <MenuTitle>
-          <ul>
-            <Flex>
-              <MenuNavList>메뉴소개</MenuNavList>
-              <MenuNavList>매장찾기</MenuNavList>
-              <MenuNavList>이벤트</MenuNavList>
-              <MenuNavList>브랜드스토리</MenuNavList>
-            </Flex>
-          </ul>
-        </MenuTitle>
-        <HiddenList className="hiddenText">안녕 난 숨겨져있어</HiddenList>
+        <NavLogo src="/burgerkingLogo.png" onClick={() => navi('/')} />
+        <ListTitle>
+          <MenuTitle>
+            <ul>
+              <Flex>
+                <MenuNavList>메뉴소개</MenuNavList>
+                <MenuNavList>매장찾기</MenuNavList>
+                <MenuNavList>이벤트</MenuNavList>
+                <MenuNavList>브랜드스토리</MenuNavList>
+              </Flex>
+            </ul>
+          </MenuTitle>
+          <HiddenList className="hiddenText">안녕 난 숨겨져있어</HiddenList>
+          <Button brown>가맹점 문의</Button>
+          <Button>딜리버리 주문</Button>
+        </ListTitle>
       </NavContainer>
     </NavMenu>
   );
@@ -33,11 +40,12 @@ const NavMenu = styled.div`
 const NavLogo = styled.img`
   width: 82px;
   height: 83px;
+  cursor: pointer;
 `;
 
 const NavContainer = styled.div`
   /* position: relative; */
-  height: 120px;
+  height: 100px;
   padding: 24px 20px 0 20px;
   margin-left: 10%;
   max-width: 1100px;
@@ -46,19 +54,30 @@ const NavContainer = styled.div`
   display: flex;
 `;
 
-const MenuTitle = styled.div`
-  /* position: relative; */
-  /* z-index: 2; */
+const ListTitle = styled.div`
+  /* position: absolute; */
+  /* font-size: 1.375rem; */
+  display: flex;
+  align-items: center;
+  gap: 15px;
   width: 100%;
-  border: 1px solid;
-  padding: 0 10px;
-  transition: all 1s;
+`;
+
+const MenuTitle = styled.div`
+  position: relative;
+  font-size: 1.375rem;
+  width: 65%;
+  margin-left: 5%;
+  font-weight: 700;
   &:hover ~ .hiddenText {
     height: 100px;
     background-color: white;
     width: 100%;
   }
+  margin-top: 40px;
+  height: 60px;
 `;
+
 const HiddenList = styled.ul`
   position: absolute;
   overflow: hidden;
@@ -66,49 +85,19 @@ const HiddenList = styled.ul`
   top: 100%;
   left: 0;
   min-width: 100%;
+  transition: all 0.3s;
   &:hover {
     height: 100px;
     background-color: white;
     width: 100%;
   }
+  padding-left: 10%;
 `;
-// const MenuNav = styled.ul`
-//   float: left;
-//   width: 100%;
-//   border: 1px solid;
-// `;
+
 const MenuNavList = styled.li`
   display: inline-block;
   vertical-align: top;
   width: 25%;
 `;
 
-// const MenuScroll = styled.a`
-//   display: block;
-//   width: auto;
-//   text-decoration: none;
-//   margin: 5px;
-// `;
-
-// const List = styled.div`
-//   position: relative;
-//   overflow: hidden;
-// `;
-
-// const ListTitle = styled.div`
-//   position: absolute;
-//   bottom: 150%;
-//   left: 30px;
-//   z-index: 2;
-// `;
-
-// const Submenu = styled.ul`
-//   /* position: absolute;
-//   left: 2%;
-//   overflow: hidden;
-//   z-index: 100; */
-// `;
-// const SubmenuLi = styled.li`
-//   /* margin-bottom: 5px; */
-// `;
 export default Nav;
