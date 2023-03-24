@@ -23,7 +23,7 @@ function Nav() {
           </MenuTitle>
           <HiddenList className="hiddenText">안녕 난 숨겨져있어</HiddenList>
           <Button brown>가맹점 문의</Button>
-          <Button>딜리버리 주문</Button>
+          <Button onClick={() => navi('/deliveryHome')}>딜리버리 주문</Button>
         </ListTitle>
       </NavContainer>
     </NavMenu>
