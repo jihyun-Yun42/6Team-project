@@ -12,9 +12,10 @@ function Router() {
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
         <Route path="/deliveryHome" element={<DeliveryHome />} />
+
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default Router
+export default Router;

@@ -1,11 +1,17 @@
 import React from 'react';
-import Header from '../components/Header';
+import Banner from '../components/Banner';
+import GlobalStyle from '../components/GlobalStyle';
+import Nav from '../components/Nav';
 
 function Home() {
   return (
-    <div>
-      <Header />
-    </div>
+    <>
+      <GlobalStyle />
+      <Nav />
+      <div style={{ margin: '0 auto', maxWidth: '1200px' }}>
+        <Banner />
+      </div>
+    </>
   );
 }
 
