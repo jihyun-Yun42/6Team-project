@@ -1,24 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import Slider from 'react-slick';
 const Banner = () => {
-  setTimeout(() => {}, 5000);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
+
   return (
-    <div style={{ overflow: 'hidden' }}>
-      <MainBanner>
-        <BannerImgBox>
+    <div style={{ overflow: 'hidden', paddingTop: '125px' }}>
+      <Slider {...settings}>
+        <div>
           <BannerImg src="./assets/IMG_0488.JPG" />
-        </BannerImgBox>
-        <BannerImgBox>
+        </div>
+        <div>
           <BannerImg src="./assets/IMG_0489.JPG" />
-        </BannerImgBox>
-        <BannerImgBox>
+        </div>
+        <div>
           <BannerImg src="./assets/IMG_0491.JPG" />
-        </BannerImgBox>
+        </div>
         {/* <BannerImg src="./assets/IMG_0488.JPG" />
         <BannerImg src="./assets/IMG_0489.JPG" />
         <BannerImg src="./assets/IMG_0491.JPG" /> */}
-      </MainBanner>
+      </Slider>
     </div>
   );
 };

@@ -6,9 +6,9 @@ function Home() {
   return (
     <>
       <Nav />
-      {/* <div style={{ margin: '0 auto', maxWidth: '1200px' }}> */}
-      <Banner />
-      {/* </div> */}
+      <div style={{ margin: '0 auto', maxWidth: '1200px' }}>
+        <Banner />
+      </div>
     </>
   );
 }
