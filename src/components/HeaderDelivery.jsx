@@ -55,10 +55,9 @@ const HeaderWrap=styled.div`
 `
 const HeaderContainer=styled.div`
     position: relative;
-    background: #f9908a;
+    background: #e22219;
 `
 const Container =styled.div`
-  background-color: #e22219;
   height: 168px;
   padding-top: 48px;
   max-width: 1184px;
