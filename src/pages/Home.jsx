@@ -1,10 +1,12 @@
 import React from 'react';
-import Header from '../components/Header';
+import GlobalStyle from '../components/GlobalStyle';
+import Nav from '../components/Nav';
 
 function Home() {
   return (
     <div>
-      <Header />
+      <GlobalStyle />
+      <Nav />
     </div>
   );
 }
