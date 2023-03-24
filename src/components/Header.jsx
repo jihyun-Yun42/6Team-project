@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 function Header() {
   return (
@@ -11,12 +11,12 @@ function Header() {
 
 const StHeader = styled.div`
   height: 100px;
-  width: 95%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  margin: 10px;
+  position: fixed;
 `;
 
 export default Header;
