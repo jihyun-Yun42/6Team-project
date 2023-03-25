@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import Button from './Button';
@@ -6,61 +6,62 @@ import { Flex } from './Flex';
 
 function Nav() {
   const navi = useNavigate();
+  const [mouse, setMouse] = useState(false);
+
   return (
-    <NavMenu>
+    <NavMenu isbig={mouse}>
       <NavContainer>
         <NavLogo src="../assets/burgerkingLogo.png" onClick={() => navi('/')} />
-        <ListTitle>
-          <MenuTitle>
+        <ListTotalTitle>
+          <MenuTitle
+            onMouseOver={() => setMouse(true)}
+            onMouseLeave={() => setMouse(false)}
+          >
             <ul>
               <MenuNavList>
-                <ClickNavClick>메뉴소개</ClickNavClick>
+                메뉴소개
+                <NavListUl>
+                  <NavListContent>신제품(NEW)</NavListContent>
+                  <NavListContent>프리미엄</NavListContent>
+                  <NavListContent>와퍼&주니어</NavListContent>
+                  <NavListContent>치킨&슈림프버거</NavListContent>
+                  <NavListContent>올데이킹&킹모닝</NavListContent>
+                  <NavListContent>사이드</NavListContent>
+                  <NavListContent>음료&디저트</NavListContent>
+                </NavListUl>
               </MenuNavList>
               <MenuNavList>
-                <ClickNavClick onClick={() => navi('/storeSearch')}>
-                  매장찾기
-                </ClickNavClick>
+                매장소개
+                <NavListUl>
+                  <NavListContent onClick={() => navi('/storeSearch')}>
+                    매장찾기
+                  </NavListContent>
+                </NavListUl>
               </MenuNavList>
               <MenuNavList>
-                <ClickNavClick>이벤트</ClickNavClick>
+                이벤트
+                <NavListUl>
+                  <NavListContent>이벤트</NavListContent>
+                </NavListUl>
               </MenuNavList>
               <MenuNavList>
-                <ClickNavClick>브랜드스토리</ClickNavClick>
+                고객센터
+                <NavListUl>
+                  <NavListContent>공지사항</NavListContent>
+                  <NavListContent>버거킹앱 이용안내</NavListContent>
+                  <NavListContent>FAQ</NavListContent>
+                  <NavListContent>문의</NavListContent>
+                  <NavListContent>가맹점모집</NavListContent>
+                  <NavListContent>인재채용</NavListContent>
+                </NavListUl>
               </MenuNavList>
             </ul>
           </MenuTitle>
-          <HiddenBox className="hiddenText">
-            <HiddenDiv>
-              <ul>
-                <li>
-                  <Hiddenlist>신제품(NEW)</Hiddenlist>
-                </li>
-                <li>
-                  <Hiddenlist>프리미엄</Hiddenlist>
-                </li>
-                <li>
-                  <Hiddenlist>와퍼&주니어</Hiddenlist>
-                </li>
-                <li>
-                  <Hiddenlist>치킨&슈프림버거</Hiddenlist>
-                </li>
-                <li>
-                  <Hiddenlist>올데이킹&킹모닝</Hiddenlist>
-                </li>
-                <li>
-                  <Hiddenlist>사이드</Hiddenlist>
-                </li>
-                <li>
-                  <Hiddenlist>음료&디저트</Hiddenlist>
-                </li>
-              </ul>
-            </HiddenDiv>
-          </HiddenBox>
           <Button brown onClick={() => navi('/login')}>
             로그인
           </Button>
           <Button onClick={() => navi('/deliveryHome')}>딜리버리 주문</Button>
-        </ListTitle>
+        </ListTotalTitle>
       </NavContainer>
     </NavMenu>
   );
@@ -71,6 +72,9 @@ const NavMenu = styled.div`
   position: fixed;
   background: white;
   z-index: 50;
+  transition: all 0.2s ease-out;
+  height: ${({ isbig }) => (isbig ? '400px' : '130px')};
+  overflow: hidden;
 `;
 
 const NavLogo = styled.img`
@@ -81,7 +85,7 @@ const NavLogo = styled.img`
 
 const NavContainer = styled.div`
   /* position: relative; */
-  height: 100px;
+  /* height: 100px; */
   padding: 24px 20px 0 20px;
   margin-left: 10%;
   max-width: 1100px;
@@ -90,7 +94,7 @@ const NavContainer = styled.div`
   display: flex;
 `;
 
-const ListTitle = styled.div`
+const ListTotalTitle = styled.div`
   /* position: absolute; */
   /* font-size: 1.375rem; */
   display: flex;
@@ -103,57 +107,29 @@ const MenuTitle = styled.div`
   position: relative;
   width: 65%;
   margin-left: 5%;
-  &:hover ~ .hiddenText {
-    height: 300px;
-    background-color: white;
-    width: 100%;
-  }
   margin-top: 40px;
   height: 60px;
-`;
-
-const HiddenBox = styled.ul`
-  position: absolute;
-  overflow: hidden;
-  height: 0;
-  top: 100%;
-  left: 0;
-  min-width: 100%;
-  transition: all 0.3s;
-  &:hover {
-    height: 300px;
-    background-color: white;
-    width: 100%;
-  }
 `;
 
 const MenuNavList = styled.li`
   display: inline-block;
   vertical-align: top;
-  width: 25%;
-`;
-
-const ClickNavClick = styled.div`
+  width: 24.5%;
   font-size: 1.375rem;
   font-weight: 700;
-  cursor: pointer;
-  /* font-family: TmoneyRoundWindExtraBold; */
+  /* border: 1px solid red; */
 `;
 
-const HiddenDiv = styled.div`
-  position: relative;
-  max-width: 1000px;
-  width: 8%;
-  left: 25%;
-  /* right: 30%; */
-  /* margin: 0 auto; */
-  border: 1px solid;
-  /* max-width: 700px; */
+const NavListUl = styled.ul`
+  margin-top: 50px;
 `;
 
-const Hiddenlist = styled.button`
-  border: 0px;
+const NavListContent = styled.li`
+  font-family: 'IBMPlexSansKR-Regular';
+  font-size: 13px;
+  font-weight: 300;
+  margin: 15px 7px;
   cursor: pointer;
-  background-color: transparent;
 `;
+
 export default Nav;

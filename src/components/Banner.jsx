@@ -13,7 +13,7 @@ const Banner = () => {
   };
 
   return (
-    <Slider {...settings} style={{ overflow: 'hidden', paddingTop: '125px' }}>
+    <Slider {...settings} style={{ overflow: 'hidden', paddingTop: '130px' }}>
       <div>
         <BannerImg src="./assets/IMG_0488.JPG" />
       </div>
@@ -30,6 +30,7 @@ const Banner = () => {
 const BannerImg = styled.img`
   width: 100%;
   float: left;
+  /* margin-top: 5px; */
   max-height: 100%;
 `;
 export default Banner;
