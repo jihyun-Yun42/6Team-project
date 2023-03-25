@@ -8,9 +8,8 @@ import Footer from '../components/Footer';
 function Home() {
   return (
     <>
-      <GlobalStyle />
       <Nav />
-      <div style={{ margin: '0 auto', maxWidth: '1200px' }}>
+      <div style={{ margin: "0 auto", maxWidth: "1200px" }}>
         <Banner />
         <YouTube
           // videoId="85jrGITDPHc"

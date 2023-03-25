@@ -1,13 +1,16 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import DeliveryHome from '../pages/DeliveryHome';
-import Home from '../pages/Home';
-import Join from '../pages/Join';
-import Login from '../pages/Login';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import GlobalStyle from '../components/GlobalStyle'
+import DeliveryHome from '../pages/DeliveryHome'
+import Home from '../pages/Home'
+import Join from '../pages/Join'
+import Login from '../pages/Login'
 import StoreSearch from '../pages/StoreSearch';
+
 
 function Router() {
   return (
     <BrowserRouter>
+      <GlobalStyle/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
