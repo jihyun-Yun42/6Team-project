@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import FooterDelivery from '../components/FooterDelivery'
 import HeaderDelivery from '../components/HeaderDelivery'
 import NavDelivery from '../components/NavDelivery'
+import { cookies } from '../shared/cookies'
 
 function DeliveryHome() {
+  const navi =useNavigate();
+  const token =cookies.get("token")
+  useEffect(()=>{
+    if(!token){
+      alert('로그인이필요합니다')
+      navi('/login')
+    }
+  },[])
   return (
     <>
       <HeaderDelivery/>
-
       <NavDelivery/>
       <MenuArea>
         <div>메뉴</div>
