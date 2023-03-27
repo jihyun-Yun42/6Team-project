@@ -1,28 +1,26 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { AddMenu } from '../components/Menu/AddMenu';
-import BetweenNav from '../components/BetweenNav';
-import FooterDelivery from '../components/FooterDelivery';
-import HeaderDelivery from '../components/HeaderDelivery';
-import NavDelivery from '../components/NavDelivery';
-import OrderCoution from '../components/OrderCoution';
-import { cookies } from '../shared/cookies';
-import { useQuery } from '@tanstack/react-query';
-import { apis } from '../axios/api';
-import { keys } from '../utils/createQueryKey';
-
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { AddMenu } from "../components/Menu/AddMenu";
+import BetweenNav from "../components/BetweenNav";
+import HeaderDelivery from "../components/HeaderDelivery";
+import NavDelivery from "../components/NavDelivery";
+import OrderCoution from "../components/OrderCoution";
+import { cookies } from "../shared/cookies";
+import { useQuery } from "@tanstack/react-query";
+import { apis } from "../axios/api";
+import { keys } from "../utils/createQueryKey";
+import TotalFooter from "../components/TotalFooter";
 
 function DeliveryHome() {
   const navi = useNavigate();
-  const token = cookies.get('token');
+  const token = cookies.get("token");
   // useEffect(()=>{
   //   if(!token){
   //     alert('로그인이필요합니다')
   //     navi('/login')
   //   }
   // },[])
-
 
   const { data, isLoading } = useQuery({
     queryKey: keys.GET_MENU,
@@ -32,6 +30,22 @@ function DeliveryHome() {
     // },
   });
 
+  const location = useLocation();
+
+  const getNaverToken = async () => {
+    try {
+      if (!location.hash) return;
+      // const token = location.hash.split("=")[1].split("&")[0]; //token 출력
+      const token = location.hash.split("=")[1].split("&")[0]; //token 출력
+      console.log("token", token);
+    } catch (e) {
+      console.log("e", e);
+    }
+  };
+
+  useEffect(() => {
+    getNaverToken();
+  }, []);
   return (
     <>
       <HeaderDelivery />
@@ -39,7 +53,7 @@ function DeliveryHome() {
       <NavDelivery />
       <MenuArea>
         <MenuList>
-          <span style={{ color: 'black', fontSize: '40px' }}>메뉴</span>
+          <span style={{ color: "black", fontSize: "40px" }}>메뉴</span>
           <MenuBar>
             <MenuTitle>스페셜&할인팩</MenuTitle>
             <MenuTitle>신제품(NEW)</MenuTitle>

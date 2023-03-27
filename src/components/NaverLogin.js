@@ -6,12 +6,10 @@ const NaverLogin = ({ setGetToken, setUserInfo }) => {
   const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
   const NAVER_CALLBACK_URL = process.env.REACT_APP_NAVER_CALLBACK_URL;
 
-  console.log(NAVER_CLIENT_ID);
-
   const initializeNaverLogin = () => {
     const naverLogin = new naver.LoginWithNaverId({
-      clientId: `${process.env.REACT_APP_NAVER_CLIENT_ID}`,
-      callbackUrl: `${process.env.REACT_APP_NAVER_CALLBACK_URL}`,
+      clientId: `${NAVER_CLIENT_ID}`,
+      callbackUrl: `${NAVER_CALLBACK_URL}`,
       isPopup: false,
       loginButton: { color: "green", type: 3, height: 58 },
       callbackHandle: true,
