@@ -291,32 +291,37 @@ const StoreSearch = () => {
       <div style={{ height: '130px' }} />
       <NavSubbar>
         <SubTextBox>
-          <SubText>HOME {'>'} 매장찾기</SubText>
+          <div>HOME {'>'} 매장찾기</div>
         </SubTextBox>
       </NavSubbar>
       {/* <Map id="map" ref={mapRef} /> */}
       <Map id="map" />
       <StoreSearchBox>
-        <select
-          name="location"
-          onChange={selectChange}
-          style={{
-            border: '0px',
-            fontSize: '18px',
-            fontFamily: 'TmoneyRoundWindExtraBold',
-            margin: '20px',
-          }}
-        >
-          <option disabled>특별/광역시</option>
-          <option value="서울">서울특별시</option>
-          <option value="부산">부산광역시</option>
-          <option value="대전">대전광역시</option>
-          <option value="대구">대구광역시</option>
-          <option value="울산">울산광역시</option>
-          <option value="인천">인천광역시</option>
-          <option value="광주">광주광역시</option>
-          <option value="세종">세종특별자치구</option>
-        </select>
+        <Store>
+          지역검색
+          <select
+            name="location"
+            onChange={selectChange}
+            style={{
+              border: '0px',
+              fontSize: '18px',
+              fontFamily: 'TmoneyRoundWindExtraBold',
+              // margin: '20px',
+            }}
+          >
+            <option selected disabled>
+              특별/광역시
+            </option>
+            <option value="서울">서울특별시</option>
+            <option value="부산">부산광역시</option>
+            <option value="대전">대전광역시</option>
+            <option value="대구">대구광역시</option>
+            <option value="울산">울산광역시</option>
+            <option value="인천">인천광역시</option>
+            <option value="광주">광주광역시</option>
+            <option value="세종">세종특별자치구</option>
+          </select>
+        </Store>
         <StoreListBox>
           <ListTitle>
             <span style={{ color: 'red' }}>{store.length}개</span>의 검색결과가 있습니다
@@ -363,15 +368,19 @@ const SubTextBox = styled.div`
   align-items: center;
 `;
 
-const SubText = styled.div`
-  //
+const Store = styled.div`
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  gap: 10px;
 `;
 const StoreSearchBox = styled.div`
   width: 400px;
   background-color: white;
   position: absolute;
-  height: 700px;
-  top: 18%;
+  height: 660px;
+  top: 19%;
   right: 0;
   z-index: 2;
 `;
@@ -382,7 +391,6 @@ const StoreListBox = styled.div`
   background-color: #f5eadc;
   height: 100%;
   box-sizing: border-box;
-  padding-bottom: 10px;
 `;
 const ListTitle = styled.div`
   height: 50px;
