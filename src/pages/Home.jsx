@@ -3,7 +3,6 @@ import Banner from "../components/Banner";
 import Nav from "../components/Nav";
 import YouTube from "react-youtube";
 import GlobalStyle from "../components/GlobalStyle";
-import Footer from "../components/Footer";
 import TotalFooter from "../components/TotalFooter";
 
 function Home() {
@@ -25,8 +24,7 @@ function Home() {
           }}
         />
       </div>
-      <Footer />
-      <TotalFooter />
+      <TotalFooter main={"main"} />
     </>
   );
 }
