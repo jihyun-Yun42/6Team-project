@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/config/configStore';
-import { Provider } from 'react-redux';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -21,9 +19,7 @@ const queryClient = new QueryClient({
 });
 root.render(
   <QueryClientProvider client={queryClient}>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <App />
   </QueryClientProvider>
 );
 

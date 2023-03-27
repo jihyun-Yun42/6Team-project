@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import Button from "../components/Button";
-import LogoImg from "../assets/burgerkingLogo.png";
-import { useNavigate } from "react-router";
+import styled from 'styled-components';
+import Button from '../components/Button';
+import LogoImg from '../assets/burgerkingLogo.png';
+import { useNavigate } from 'react-router';
+import { Flex } from './Flex';
 
 function HeaderDelivery() {
   const navi = useNavigate();
@@ -10,28 +11,31 @@ function HeaderDelivery() {
       <HeaderWrap>
         <HeaderContainer>
           <Container>
-            <LogoH1>
-              <img
-                src={`${LogoImg}`}
-                style={{ width: "60px" }}
-                onClick={() => navi("/")}
-              />
-              <span>버거킹</span>
-            </LogoH1>
-            <UtilWrap>
-              <UtilA>
-                <span>브랜드홈</span>
-              </UtilA>
-              <UtilA>
-                <span>로그인</span>
-              </UtilA>
-              <UtilA>
-                <span>고객센터</span>
-              </UtilA>
-            </UtilWrap>
-            <Join>
-              <Button onClick={() => navi("/join")}>회원가입</Button>
-            </Join>
+            <div>
+              <UtilWrap>
+                <UtilA>
+                  <DeliveryText onClick={() => navi('/')}>브랜드홈</DeliveryText>
+                </UtilA>
+                <UtilA>
+                  <DeliveryText onClick={() => navi('/login')}>로그인</DeliveryText>
+                </UtilA>
+                <UtilA>
+                  <DeliveryText>고객센터</DeliveryText>
+                </UtilA>
+              </UtilWrap>
+              <Flex ai="flex-end" jc="space-between">
+                <LogoH1>
+                  <LogoImage src={`${LogoImg}`} onClick={() => navi('/')} />
+                  <span>버거킹</span>
+                </LogoH1>
+
+                <Join>
+                  <Button brown onClick={() => navi('/join')}>
+                    회원가입
+                  </Button>
+                </Join>
+              </Flex>
+            </div>
           </Container>
         </HeaderContainer>
       </HeaderWrap>
@@ -41,22 +45,27 @@ function HeaderDelivery() {
 
 export default HeaderDelivery;
 
+const LogoImage = styled.img`
+  width: 82px;
+  height: 83px;
+  cursor: pointer;
+`;
+
 const Join = styled.div`
   display: inline-block;
-  padding-top: 80px;
   padding-right: 30px;
 `;
 
 const UtilWrap = styled.div`
-  position: absolute;
   right: 20px;
   top: 0;
-  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
 `;
 const UtilA = styled.a`
   color: white;
   position: relative;
-  display: block;
+  /* display: block; */
   float: left;
   height: 48px;
   padding: 0 14px;
@@ -66,9 +75,8 @@ const UtilA = styled.a`
 
 const HeaderWrap = styled.div`
   position: fixed;
-  left: 0;
+  width: 100%;
   top: 0;
-  right: 0;
   z-index: 50;
 `;
 const HeaderContainer = styled.div`
@@ -77,27 +85,23 @@ const HeaderContainer = styled.div`
 `;
 const Container = styled.div`
   height: 168px;
-  padding-top: 48px;
   max-width: 1184px;
   margin: 0 auto;
   padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
   position: relative;
 `;
 
-const LogoH1 = styled.h1`
-  display: inline-block;
-  position: static;
-  width: auto;
-  height: 120px;
-  padding-left: 80px;
-  padding-right: 10px;
-  font-weight: 700;
+const LogoH1 = styled.div`
   font-size: 2.25rem;
   color: #fff;
-  text-indent: 0;
-  line-height: 120px;
-  background-image: url({LogoImg}) no-repeat 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`;
+
+const DeliveryText = styled.span`
   cursor: pointer;
 `;

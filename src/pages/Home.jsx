@@ -9,7 +9,7 @@ function Home() {
   return (
     <>
       <Nav />
-      <div style={{ margin: "0 auto", maxWidth: "1200px" }}>
+      <div style={{ margin: "0 auto", maxWidth: "1500px" }}>
         <Banner />
         <YouTube
           // videoId="85jrGITDPHc"

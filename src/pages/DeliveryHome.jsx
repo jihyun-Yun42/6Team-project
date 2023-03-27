@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AddMenu } from "../components/Menu/AddMenu";
 import BetweenNav from "../components/BetweenNav";
@@ -24,28 +24,15 @@ function DeliveryHome() {
 
   const { data, isLoading } = useQuery({
     queryKey: keys.GET_MENU,
-    // queryFn: async () => {
-    // const data = await apis.get('/api/list');
-    // console.log(data);
-    // },
+    queryFn: async () => {
+      const data = await apis.get("/api/menus/list");
+      return data.data;
+    },
   });
+  console.log(data);
 
-  const location = useLocation();
+  // if (!data || isLoading) return <div>로딩중...</div>;
 
-  const getNaverToken = async () => {
-    try {
-      if (!location.hash) return;
-      // const token = location.hash.split("=")[1].split("&")[0]; //token 출력
-      const token = location.hash.split("=")[1].split("&")[0]; //token 출력
-      console.log("token", token);
-    } catch (e) {
-      console.log("e", e);
-    }
-  };
-
-  useEffect(() => {
-    getNaverToken();
-  }, []);
   return (
     <>
       <HeaderDelivery />
@@ -55,7 +42,6 @@ function DeliveryHome() {
         <MenuList>
           <span style={{ color: "black", fontSize: "40px" }}>메뉴</span>
           <MenuBar>
-            <MenuTitle>스페셜&할인팩</MenuTitle>
             <MenuTitle>신제품(NEW)</MenuTitle>
             <li>프리미엄</li>
             <li>와퍼&주니어</li>
@@ -65,7 +51,11 @@ function DeliveryHome() {
             <li>독퍼</li>
           </MenuBar>
         </MenuList>
-        <Tab_cont>f</Tab_cont>
+        <Tab_cont>
+          {/* {data.map((item) => (
+            <div key={item.id}>{item.title}</div>
+          ))} */}
+        </Tab_cont>
       </MenuArea>
       <AddMenu />
       <OrderCoution />
@@ -86,6 +76,7 @@ const MenuArea = styled.div`
   max-width: 1184px;
   /* height: 934px; */
 `;
+
 const MenuList = styled.div`
   color: #b8b8b8;
   display: flex;
