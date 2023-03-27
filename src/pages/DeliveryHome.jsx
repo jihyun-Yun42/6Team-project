@@ -9,7 +9,7 @@ import { cookies } from '../shared/cookies';
 
 function DeliveryHome() {
   const navi = useNavigate();
-  const token = cookies.get('token');
+  const token = cookies.get("token");
   // useEffect(()=>{
   //   if(!token){
   //     alert('로그인이필요합니다')
@@ -19,6 +19,7 @@ function DeliveryHome() {
   return (
     <>
       <HeaderDelivery />
+      <BetweenNav />
       <NavDelivery />
       <MenuArea>
         <div>메뉴</div>

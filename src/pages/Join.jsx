@@ -1,11 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
+import Button from "../components/Button";
 import FooterDelivery from "../components/FooterDelivery";
 import HeaderDelivery from "../components/HeaderDelivery";
+import NavDelivery from "../components/NavDelivery";
 function Join() {
+  const nav = useNavigate();
   return (
     <>
       <HeaderDelivery />
+      <NavDelivery margintop={"168px"} />
       <JoinWrap>
         <JoinContainer>
           <WelcomeBox>
@@ -20,6 +25,18 @@ function Join() {
               </Txt_info>
             </Txt_welcome>
           </WelcomeBox>
+          <LoginUi>
+            <Login>
+              <h3>이메일 회원가입</h3>
+              <Button onClick={() => nav("/signup")}>버거킹 회원가입</Button>
+            </Login>
+            <LoginSimple>
+              <h3>간편 회원가입</h3>
+              <div>네이버</div>
+              <div>카카오톡</div>
+              <div>애플</div>
+            </LoginSimple>
+          </LoginUi>
         </JoinContainer>
       </JoinWrap>
       <FooterDelivery />
@@ -29,6 +46,30 @@ function Join() {
 
 export default Join;
 
+const LoginSimple = styled.div`
+  padding-top: 85px;
+  width: 50%;
+  max-width: 485px;
+  padding-left: 8.74%;
+  float: right;
+  background-color: #6197c5;
+`;
+
+const Login = styled.div`
+  padding-top: 85px;
+  width: 50%;
+  min-width: 530px;
+  padding-right: 5.23%;
+  border-right: 1px solid #e5e5e5;
+  background-color: #41586b;
+  float: left;
+`;
+
+const LoginUi = styled.div`
+  min-height: 560px;
+  padding: 45px 0 70px;
+  display: flex;
+`;
 const JoinContainer = styled.div`
   max-width: 1184px;
   margin: 0 auto;
