@@ -45,15 +45,15 @@ const Banner = () => {
     //   </div>
     // </Slider>
     <Slider>
-      {/* <div style={{ transform: 'translateX(-100vw)' }}> */}
-      <BannerImg src={images[index]} />
-      {/* </div> */}
-      <BannerBtn onClick={prevImage} style={{ left: 0 }}>
-        <VscChevronLeft />
-      </BannerBtn>
-      <BannerBtn onClick={nextImage} style={{ right: 0 }}>
-        <VscChevronRight />
-      </BannerBtn>
+      <div style={{ transition: 'all 0.3s ease-out' }}>
+        <BannerImg src={images[index]} />
+        <BannerBtn onClick={prevImage} style={{ left: 0 }}>
+          <VscChevronLeft />
+        </BannerBtn>
+        <BannerBtn onClick={nextImage} style={{ right: 0 }}>
+          <VscChevronRight />
+        </BannerBtn>
+      </div>
     </Slider>
   );
 };
@@ -70,7 +70,7 @@ const BannerImg = styled.img`
   max-height: 100%;
   z-index: 2;
   transform: translateX(1000);
-  transition: 1s;
+  transition: all 0.3s ease-out;
 `;
 
 const BannerBtn = styled.button`

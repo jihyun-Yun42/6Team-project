@@ -4,6 +4,7 @@ import Nav from '../components/Nav';
 import YouTube from 'react-youtube';
 import GlobalStyle from '../components/GlobalStyle';
 import Footer from '../components/Footer';
+import FooterDelivery from '../components/FooterDelivery';
 
 function Home() {
   return (
@@ -25,6 +26,7 @@ function Home() {
         />
       </div>
       <Footer />
+      <FooterDelivery />
     </>
   );
 }
