@@ -2,9 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import Button from "../components/Button";
-import FooterDelivery from "../components/FooterDelivery";
 import HeaderDelivery from "../components/HeaderDelivery";
 import NavDelivery from "../components/NavDelivery";
+import TotalFooter from "../components/TotalFooter";
 function Join() {
   const nav = useNavigate();
   return (
@@ -39,7 +39,7 @@ function Join() {
           </LoginUi>
         </JoinContainer>
       </JoinWrap>
-      <FooterDelivery />
+      <TotalFooter />
     </>
   );
 }

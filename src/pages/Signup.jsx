@@ -1,14 +1,18 @@
-import React from "react";
 import styled from "styled-components";
-import FooterDelivery from "../components/FooterDelivery";
 import HeaderDelivery from "../components/HeaderDelivery";
+import NavDelivery from "../components/NavDelivery";
+import NaverLogin from "../components/NaverLogin";
+import TotalFooter from "../components/TotalFooter";
 
 function Signup() {
   return (
     <>
       <HeaderDelivery />
-      <SignupContainer></SignupContainer>
-      <FooterDelivery />
+      <NavDelivery margintop={"168px"} />
+      <SignupContainer>
+        <NaverLogin />
+      </SignupContainer>
+      <TotalFooter />
     </>
   );
 }

@@ -12,6 +12,7 @@ import { useQuery } from '@tanstack/react-query';
 import { apis } from '../axios/api';
 import { keys } from '../utils/createQueryKey';
 
+
 function DeliveryHome() {
   const navi = useNavigate();
   const token = cookies.get('token');
@@ -22,6 +23,7 @@ function DeliveryHome() {
   //   }
   // },[])
 
+
   const { data, isLoading } = useQuery({
     queryKey: keys.GET_MENU,
     // queryFn: async () => {
@@ -29,6 +31,7 @@ function DeliveryHome() {
     // console.log(data);
     // },
   });
+
   return (
     <>
       <HeaderDelivery />
@@ -52,7 +55,7 @@ function DeliveryHome() {
       </MenuArea>
       <AddMenu />
       <OrderCoution />
-      <FooterDelivery />
+      <TotalFooter />
     </>
   );
 }

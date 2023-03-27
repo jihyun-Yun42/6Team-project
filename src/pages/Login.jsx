@@ -4,9 +4,9 @@ import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { apis } from "../axios/api";
 import Button from "../components/Button";
-import FooterDelivery from "../components/FooterDelivery";
 import HeaderDelivery from "../components/HeaderDelivery";
 import NavDelivery from "../components/NavDelivery";
+import TotalFooter from "../components/TotalFooter";
 import { cookies } from "../shared/cookies";
 
 function Login() {
@@ -82,7 +82,7 @@ function Login() {
         </LoginUI>
       </LoginContainer>
       <NoneUserContainer>비회원구역</NoneUserContainer>
-      <FooterDelivery />
+      <TotalFooter />
     </>
   );
 }
