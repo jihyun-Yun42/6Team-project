@@ -1,37 +1,59 @@
-import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import BetweenNav from "../components/BetweenNav";
-import HeaderDelivery from "../components/HeaderDelivery";
-import NavDelivery from "../components/NavDelivery";
-import OrderCoution from "../components/OrderCoution";
-import TotalFooter from "../components/TotalFooter";
-import { cookies } from "../shared/cookies";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { AddMenu } from '../components/Menu/AddMenu';
+import BetweenNav from '../components/BetweenNav';
+import FooterDelivery from '../components/FooterDelivery';
+import HeaderDelivery from '../components/HeaderDelivery';
+import NavDelivery from '../components/NavDelivery';
+import OrderCoution from '../components/OrderCoution';
+import { cookies } from '../shared/cookies';
+import { useQuery } from '@tanstack/react-query';
+import { apis } from '../axios/api';
+import { keys } from '../utils/createQueryKey';
+
 
 function DeliveryHome() {
   const navi = useNavigate();
-  const token = cookies.get("token");
+  const token = cookies.get('token');
   // useEffect(()=>{
   //   if(!token){
   //     alert('로그인이필요합니다')
   //     navi('/login')
   //   }
   // },[])
-  const location = useLocation();
-  const code = location.search.split("=")[1];
-  const state = location.search.split("=")[2];
-  console.log("code", code);
-  console.log("location", location);
-  console.log("state", state);
+
+
+  const { data, isLoading } = useQuery({
+    queryKey: keys.GET_MENU,
+    // queryFn: async () => {
+    // const data = await apis.get('/api/list');
+    // console.log(data);
+    // },
+  });
+
   return (
     <>
       <HeaderDelivery />
       <BetweenNav />
       <NavDelivery />
       <MenuArea>
-        <div>메뉴</div>
+        <MenuList>
+          <span style={{ color: 'black', fontSize: '40px' }}>메뉴</span>
+          <MenuBar>
+            <MenuTitle>스페셜&할인팩</MenuTitle>
+            <MenuTitle>신제품(NEW)</MenuTitle>
+            <li>프리미엄</li>
+            <li>와퍼&주니어</li>
+            <li>치킨&슈림프버거</li>
+            <li>사이드</li>
+            <li>음료&디저트</li>
+            <li>독퍼</li>
+          </MenuBar>
+        </MenuList>
         <Tab_cont>f</Tab_cont>
       </MenuArea>
+      <AddMenu />
       <OrderCoution />
       <TotalFooter />
     </>
@@ -46,8 +68,25 @@ const Tab_cont = styled.div`
 `;
 
 const MenuArea = styled.div`
-  background-color: #917d7d;
-  margin: 0px auto;
+  margin: 50px auto 0 auto;
   max-width: 1184px;
   /* height: 934px; */
+`;
+const MenuList = styled.div`
+  color: #b8b8b8;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+const MenuBar = styled.ul`
+  display: flex;
+  gap: 30px;
+`;
+
+const MenuTitle = styled.li`
+  cursor: pointer;
+  &:active {
+    color: #e22219;
+  }
 `;

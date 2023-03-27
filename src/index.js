@@ -7,12 +7,24 @@ import store from './redux/config/configStore';
 import { Provider } from 'react-redux';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 0,
+      staleTime: 5000,
+    },
+  },
+});
 root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </QueryClientProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
