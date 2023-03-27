@@ -11,6 +11,13 @@ import { useQuery } from '@tanstack/react-query';
 import { apis } from '../axios/api';
 import { keys } from '../utils/createQueryKey';
 import TotalFooter from '../components/TotalFooter';
+import { Card } from '../components/Card';
+import {
+  ModalBackground,
+  ModalContent,
+  ModalRoot,
+  ModalTrigger,
+} from '../components/Modal';
 
 function DeliveryHome() {
   const navi = useNavigate();
@@ -29,7 +36,6 @@ function DeliveryHome() {
       return data.data;
     },
   });
-  console.log(data);
 
   if (!data || isLoading) return <div>로딩중...</div>;
 
@@ -53,11 +59,19 @@ function DeliveryHome() {
         </MenuList>
         <Tab_cont>
           {data.map((item) => (
-            <div key={item.id}>{item.title}</div>
+            <Card item={item} />
           ))}
         </Tab_cont>
       </MenuArea>
-      <AddMenu />
+      <ModalRoot>
+        <ModalTrigger>
+          <button>메뉴추가하기</button>
+          <ModalBackground />
+        </ModalTrigger>
+        <ModalContent>
+          <AddMenu />
+        </ModalContent>
+      </ModalRoot>
       <OrderCoution />
       <TotalFooter />
     </>
