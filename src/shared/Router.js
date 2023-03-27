@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle from "../components/GlobalStyle";
+import NaverLogin from "../components/NaverLogin";
 import DeliveryHome from "../pages/DeliveryHome";
 import Home from "../pages/Home";
 import Join from "../pages/Join";
@@ -18,6 +19,7 @@ function Router() {
         <Route path="/deliveryHome" element={<DeliveryHome />} />
         <Route path="/storeSearch" element={<StoreSearch />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/naver" component={<NaverLogin />} />
       </Routes>
     </BrowserRouter>
   );

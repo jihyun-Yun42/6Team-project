@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import HeaderDelivery from "../components/HeaderDelivery";
 import NavDelivery from "../components/NavDelivery";
+import NaverLogin from "../components/NaverLogin";
 import TotalFooter from "../components/TotalFooter";
 
 function Signup() {
@@ -8,7 +9,9 @@ function Signup() {
     <>
       <HeaderDelivery />
       <NavDelivery margintop={"168px"} />
-      <SignupContainer></SignupContainer>
+      <SignupContainer>
+        <NaverLogin />
+      </SignupContainer>
       <TotalFooter />
     </>
   );

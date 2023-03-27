@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BetweenNav from "../components/BetweenNav";
 import HeaderDelivery from "../components/HeaderDelivery";
@@ -17,6 +17,12 @@ function DeliveryHome() {
   //     navi('/login')
   //   }
   // },[])
+  const location = useLocation();
+  const code = location.search.split("=")[1];
+  const state = location.search.split("=")[2];
+  console.log("code", code);
+  console.log("location", location);
+  console.log("state", state);
   return (
     <>
       <HeaderDelivery />
