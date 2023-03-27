@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import FooterDelivery from '../components/FooterDelivery';
-import HeaderDelivery from '../components/HeaderDelivery';
-import NavDelivery from '../components/NavDelivery';
-import OrderCoution from '../components/OrderCoution';
-import { cookies } from '../shared/cookies';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import BetweenNav from "../components/BetweenNav";
+import HeaderDelivery from "../components/HeaderDelivery";
+import NavDelivery from "../components/NavDelivery";
+import OrderCoution from "../components/OrderCoution";
+import TotalFooter from "../components/TotalFooter";
+import { cookies } from "../shared/cookies";
 
 function DeliveryHome() {
   const navi = useNavigate();
@@ -26,7 +27,7 @@ function DeliveryHome() {
         <Tab_cont>f</Tab_cont>
       </MenuArea>
       <OrderCoution />
-      <FooterDelivery />
+      <TotalFooter />
     </>
   );
 }
