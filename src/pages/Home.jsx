@@ -5,17 +5,18 @@ import YouTube from "react-youtube";
 import GlobalStyle from "../components/GlobalStyle";
 import TotalFooter from "../components/TotalFooter";
 
+
 function Home() {
   return (
     <>
       <Nav />
-      <div style={{ margin: "0 auto", maxWidth: "1200px" }}>
+      <div style={{ margin: '0 auto', maxWidth: '1500px' }}>
         <Banner />
         <YouTube
           // videoId="85jrGITDPHc"
           opts={{
-            width: "100%",
-            height: "600px",
+            width: '100%',
+            height: '600px',
             playerVars: {
               autoplay: 1, //자동재생 O
               rel: 0, //관련 동영상 표시하지 않음 (근데 별로 쓸모 없는듯..)

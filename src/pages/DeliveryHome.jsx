@@ -1,16 +1,17 @@
-import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { AddMenu } from "../components/Menu/AddMenu";
-import BetweenNav from "../components/BetweenNav";
-import HeaderDelivery from "../components/HeaderDelivery";
-import NavDelivery from "../components/NavDelivery";
-import OrderCoution from "../components/OrderCoution";
-import { cookies } from "../shared/cookies";
-import { useQuery } from "@tanstack/react-query";
-import { apis } from "../axios/api";
-import { keys } from "../utils/createQueryKey";
-import TotalFooter from "../components/TotalFooter";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { AddMenu } from '../components/Menu/AddMenu';
+import BetweenNav from '../components/BetweenNav';
+import HeaderDelivery from '../components/HeaderDelivery';
+import NavDelivery from '../components/NavDelivery';
+import OrderCoution from '../components/OrderCoution';
+import { cookies } from '../shared/cookies';
+import { useQuery } from '@tanstack/react-query';
+import { apis } from '../axios/api';
+import { keys } from '../utils/createQueryKey';
+import TotalFooter from '../components/TotalFooter';
+
 
 function DeliveryHome() {
   const navi = useNavigate();
@@ -24,11 +25,14 @@ function DeliveryHome() {
 
   const { data, isLoading } = useQuery({
     queryKey: keys.GET_MENU,
-    // queryFn: async () => {
-    // const data = await apis.get('/api/list');
-    // console.log(data);
-    // },
+    queryFn: async () => {
+      const data = await apis.get('/api/menus/list');
+      return data.data;
+    },
   });
+  console.log(data);
+
+  if (!data || isLoading) return <div>로딩중...</div>;
 
   const location = useLocation();
 
@@ -55,7 +59,6 @@ function DeliveryHome() {
         <MenuList>
           <span style={{ color: "black", fontSize: "40px" }}>메뉴</span>
           <MenuBar>
-            <MenuTitle>스페셜&할인팩</MenuTitle>
             <MenuTitle>신제품(NEW)</MenuTitle>
             <li>프리미엄</li>
             <li>와퍼&주니어</li>
@@ -65,7 +68,11 @@ function DeliveryHome() {
             <li>독퍼</li>
           </MenuBar>
         </MenuList>
-        <Tab_cont>f</Tab_cont>
+        <Tab_cont>
+          {data.map((item) => (
+            <div key={item.id}>{item.title}</div>
+          ))}
+        </Tab_cont>
       </MenuArea>
       <AddMenu />
       <OrderCoution />
@@ -86,6 +93,7 @@ const MenuArea = styled.div`
   max-width: 1184px;
   /* height: 934px; */
 `;
+
 const MenuList = styled.div`
   color: #b8b8b8;
   display: flex;
