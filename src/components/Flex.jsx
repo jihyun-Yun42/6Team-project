@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
-export const Flex = ({ children, fd, ai, ac, fw }) => {
-  return <Div fd={fd} ai={ai} ac={ac} fw={fw}>{children}</Div>;
+export const Flex = ({ children, fd, ai, ac, fw, jc }) => {
+  return (
+    <Div fd={fd} ai={ai} ac={ac} fw={fw} jc={jc}>
+      {children}
+    </Div>
+  );
 };
 
 const Div = styled.div`

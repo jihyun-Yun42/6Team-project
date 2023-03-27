@@ -4,12 +4,10 @@ import styled from 'styled-components';
 import { apis } from '../axios/api';
 import Nav from '../components/Nav';
 
-const { kakao } = window;
-
 const StoreSearch = () => {
+  const { kakao } = window;
   const [storeLoc, setStoreLoc] = useState('서울');
   const [store, setStore] = useState([]);
-  console.log(store);
 
   const selectChange = (e) => {
     setStoreLoc(e.target.value);
@@ -44,7 +42,6 @@ const StoreSearch = () => {
         // 검색 목록과 마커를 표출합니다
         displayPlaces(data);
         setStore(data);
-
         return;
       }
     }
@@ -99,27 +96,27 @@ const StoreSearch = () => {
     function getListItem(index, places) {
       var el = document.createElement('li'),
         itemStr =
-          '<span class="markerbg marker_' +
+          '<span className="markerbg marker_' +
           (index + 1) +
           '"></span>' +
-          '<div class="info">' +
-          '   <h5>' +
+          '<div className="info">' +
+          '<h5>' +
           places.place_name +
           '</h5>';
 
       if (places.road_address_name) {
         itemStr +=
-          '    <span>' +
+          '<span>' +
           places.road_address_name +
           '</span>' +
-          '   <span class="jibun gray">' +
+          '<span className="jibun gray">' +
           places.address_name +
           '</span>';
       } else {
-        itemStr += '    <span>' + places.address_name + '</span>';
+        itemStr += '<span>' + places.address_name + '</span>';
       }
 
-      itemStr += '  <span class="tel">' + places.phone + '</span>' + '</div>';
+      itemStr += '<span className="tel">' + places.phone + '</span>' + '</div>';
 
       el.innerHTML = itemStr;
       el.className = 'item';
@@ -188,15 +185,19 @@ const StoreSearch = () => {
           지역검색
           <select
             name="location"
+            value={this}
+            defaultValue={'DEFAULT'}
             onChange={selectChange}
             style={{
-              border: '0px',
+              border: '1px solid lightgray',
+              borderRadius: '10px',
+              padding: '10px',
               fontSize: '18px',
               fontFamily: 'TmoneyRoundWindExtraBold',
               // margin: '20px',
             }}
           >
-            <option selected disabled>
+            <option value="DEFAULT" disabled>
               특별/광역시
             </option>
             <option value="서울">서울특별시</option>
@@ -266,7 +267,7 @@ const StoreSearchBox = styled.div`
   width: 400px;
   background-color: white;
   position: absolute;
-  height: 660px;
+  height: 640px;
   top: 19%;
   right: 0;
   z-index: 2;

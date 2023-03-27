@@ -1,18 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc';
 
 const Banner = () => {
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 1000,
-  //   slidesToShow: 1,
-  //   slidesToScroll: 1,
-  //   autoplay: true,
-  //   autoplaySpeed: 3000,
-  // };
-  const [index, setIndex] = useState(0);
+  const index = useRef(0);
+  const [num, setNum] = useState(index.current);
 
   const images = [
     './assets/IMG_0488.JPG',
@@ -20,33 +12,31 @@ const Banner = () => {
     './assets/IMG_0491.JPG',
   ];
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      index.current = (index.current + 1) % images.length;
+      setNum(!num);
+    }, 5000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [num]);
+
   const nextImage = () => {
-    setIndex((index + 1) % images.length);
+    index.current = (index.current + 1) % images.length;
+    setNum(!num);
   };
 
   const prevImage = () => {
-    setIndex((index + images.length - 1) % images.length);
+    index.current = (index.current + images.length - 1) % images.length;
+    setNum(!num);
   };
 
-  setTimeout(() => {
-    setIndex((index + 1) % images.length);
-  }, 5000);
-
+  console.log(index.current);
   return (
-    // <Slider {...settings} style={{ overflow: 'hidden', paddingTop: '130px' }}>
-    //   <div>
-    //     <BannerImg src="./assets/IMG_0488.JPG" />
-    //   </div>
-    //   <div>
-    //     <BannerImg src="./assets/IMG_0489.JPG" />
-    //   </div>
-    //   <div>
-    //     <BannerImg src="./assets/IMG_0491.JPG" />
-    //   </div>
-    // </Slider>
     <Slider>
-      <div style={{ transition: 'all 0.3s ease-out' }}>
-        <BannerImg src={images[index]} />
+      <div>
+        <BannerImg src={images[index.current]} />
         <BannerBtn onClick={prevImage} style={{ left: 0 }}>
           <VscChevronLeft />
         </BannerBtn>
@@ -59,14 +49,12 @@ const Banner = () => {
 };
 
 const Slider = styled.div`
-  /* max-width: 1200px; */
   position: relative;
 `;
 const BannerImg = styled.img`
   margin-top: 130px;
   width: 100%;
   float: left;
-  /* margin-top: 5px; */
   max-height: 100%;
   z-index: 2;
   transform: translateX(1000);
@@ -77,9 +65,10 @@ const BannerBtn = styled.button`
   border: 0px;
   background-color: transparent;
   position: absolute;
-  top: 31vh;
+  top: 37vh;
   font-size: 40px;
   z-index: 3;
   color: #fff;
+  cursor: pointer;
 `;
 export default Banner;
