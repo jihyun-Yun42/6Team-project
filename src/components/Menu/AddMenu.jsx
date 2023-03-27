@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import api, { apis } from '../../axios/api';
 import { keys } from '../../utils/createQueryKey';
+import { ModalRoot, ModalTrigger } from '../Modal';
 
 export const AddMenu = () => {
   const queryClinet = useQueryClient();
@@ -96,7 +97,11 @@ export const AddMenu = () => {
         <option value="drink">음료&디저트</option>
         <option value="dog">독퍼</option>
       </select>
-      <button type="submit">제출</button>
+      <ModalRoot>
+        <ModalTrigger>
+          <button type="submit">제출</button>
+        </ModalTrigger>
+      </ModalRoot>
     </form>
   );
 };

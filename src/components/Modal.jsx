@@ -24,7 +24,8 @@ const Background = styled.div`
 `;
 
 export const ModalTrigger = ({ children }) => {
-  const { setOpen } = useContext(Context);
+  const { open, setOpen } = useContext(Context);
+  console.log('Modal', open);
   return <div onClick={() => setOpen((pre) => !pre)}>{children}</div>;
 };
 

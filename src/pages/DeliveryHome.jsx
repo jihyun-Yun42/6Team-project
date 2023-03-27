@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AddMenu } from '../components/Menu/AddMenu';
@@ -20,15 +20,11 @@ import {
 } from '../components/Modal';
 
 function DeliveryHome() {
-  const navi = useNavigate();
-  const token = cookies.get('token');
-  // useEffect(()=>{
-  //   if(!token){
-  //     alert('로그인이필요합니다')
-  //     navi('/login')
-  //   }
-  // },[])
+  const [category, setCategory] = useState('신제품');
 
+  const onClickCategory = (e) => {
+    setCategory(e.target.value);
+  };
   const { data, isLoading } = useQuery({
     queryKey: keys.GET_MENU,
     queryFn: async () => {
@@ -36,7 +32,7 @@ function DeliveryHome() {
       return data.data;
     },
   });
-
+  console.log(data);
   if (!data || isLoading) return <div>로딩중...</div>;
 
   return (
@@ -48,19 +44,60 @@ function DeliveryHome() {
         <MenuList>
           <span style={{ color: 'black', fontSize: '40px' }}>메뉴</span>
           <MenuBar>
-            <MenuTitle>신제품(NEW)</MenuTitle>
-            <li>프리미엄</li>
-            <li>와퍼&주니어</li>
-            <li>치킨&슈림프버거</li>
-            <li>사이드</li>
-            <li>음료&디저트</li>
-            <li>독퍼</li>
+            <MenuBtn
+              value="NEW"
+              onClick={onClickCategory}
+              className={category === 'NEW' && 'btnselect'}
+            >
+              신제품(NEW)
+            </MenuBtn>
+            <MenuBtn
+              value="premium"
+              onClick={onClickCategory}
+              className={category === 'premium' && 'btnselect'}
+            >
+              프리미엄
+            </MenuBtn>
+            <MenuBtn
+              value="Whopper"
+              onClick={onClickCategory}
+              className={category === 'Whopper' && 'btnselect'}
+            >
+              와퍼&주니어
+            </MenuBtn>
+            <MenuBtn
+              value="chicken"
+              onClick={onClickCategory}
+              className={category === 'chicken' && 'btnselect'}
+            >
+              치킨&슈림프버거
+            </MenuBtn>
+            <MenuBtn
+              value="side"
+              onClick={onClickCategory}
+              className={category === 'side' && 'btnselect'}
+            >
+              사이드
+            </MenuBtn>
+            <MenuBtn
+              value="drink"
+              onClick={onClickCategory}
+              className={category === 'drink' && 'btnselect'}
+            >
+              음료&디저트
+            </MenuBtn>
+            <MenuBtn
+              value="dog"
+              onClick={onClickCategory}
+              className={category === 'dog' && 'btnselect'}
+            >
+              독퍼
+            </MenuBtn>
           </MenuBar>
         </MenuList>
         <Tab_cont>
-          {data.map((item) => (
-            <Card item={item} />
-          ))}
+          {/* {data.filter((item) => item.category === category && console.log(item))} */}
+          {data.map((item) => item.category === category && <Card item={item} />)}
         </Tab_cont>
       </MenuArea>
       <ModalRoot>
@@ -83,6 +120,10 @@ export default DeliveryHome;
 const Tab_cont = styled.div`
   background-color: #aad3d3;
   height: 522px;
+  display: flex;
+  gap: 3%;
+  flex-wrap: wrap;
+  padding: 4%;
 `;
 
 const MenuArea = styled.div`
@@ -92,7 +133,6 @@ const MenuArea = styled.div`
 `;
 
 const MenuList = styled.div`
-  color: #b8b8b8;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -101,9 +141,15 @@ const MenuList = styled.div`
 const MenuBar = styled.ul`
   display: flex;
   gap: 30px;
+  /* font-size: 20px; */
 `;
 
-const MenuTitle = styled.li`
+const MenuBtn = styled.button`
+  border: 0px;
+  background-color: transparent;
+  font-size: 20px;
+  font-family: 'TmoneyRoundWindExtraBold';
+  color: #b8b8b8;
   cursor: pointer;
   &:active {
     color: #e22219;
