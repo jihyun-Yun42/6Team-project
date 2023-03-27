@@ -40,7 +40,7 @@ function Login() {
   return (
     <>
       <HeaderDelivery />
-      <NavDelivery />
+      <NavDelivery margintop={"168px"} />
       <LoginContainer>
         <LoinTitle color={"#e22219"}>YOUR WAY</LoinTitle>
         <LoinTitle>어서오세요 버거킹입니다.</LoinTitle>

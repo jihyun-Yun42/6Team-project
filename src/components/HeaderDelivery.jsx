@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import Button from '../components/Button';
-import LogoImg from '../assets/burgerkingLogo.png';
-import { useNavigate } from 'react-router';
+import styled from "styled-components";
+import Button from "../components/Button";
+import LogoImg from "../assets/burgerkingLogo.png";
+import { useNavigate } from "react-router";
 
 function HeaderDelivery() {
   const navi = useNavigate();
@@ -13,8 +13,8 @@ function HeaderDelivery() {
             <LogoH1>
               <img
                 src={`${LogoImg}`}
-                style={{ width: '60px' }}
-                onClick={() => navi('/')}
+                style={{ width: "60px" }}
+                onClick={() => navi("/")}
               />
               <span>버거킹</span>
             </LogoH1>
@@ -30,7 +30,7 @@ function HeaderDelivery() {
               </UtilA>
             </UtilWrap>
             <Join>
-              <Button onClick={() => navi('/join')}>회원가입</Button>
+              <Button onClick={() => navi("/join")}>회원가입</Button>
             </Join>
           </Container>
         </HeaderContainer>
@@ -65,7 +65,7 @@ const UtilA = styled.a`
 `;
 
 const HeaderWrap = styled.div`
-  /* position: fixed; */
+  position: fixed;
   left: 0;
   top: 0;
   right: 0;
