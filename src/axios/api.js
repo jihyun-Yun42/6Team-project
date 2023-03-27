@@ -1,16 +1,14 @@
 import axios from 'axios';
 import { cookies } from '../shared/cookies';
 
+// 토큰없이 보낼때
 export const apis = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
-  // timeout: 1,
-  // 오류 확인 가능한지 테스트.. 1밀리세컨드.. 내에 응답을 못받으면 에러처리 하도록 돼 있음.
 });
 
+// 토큰 넣어서 보낼때
 const api = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
-  // timeout: 1,
-  // 오류 확인 가능한지 테스트.. 1밀리세컨드.. 내에 응답을 못받으면 에러처리 하도록 돼 있음.
 });
 
 api.interceptors.request.use(

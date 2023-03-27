@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import bgimg from "../assets/bg_personality.2ff1d0f9.gif";
+import React from 'react';
+import styled from 'styled-components';
+import bgimg from '../assets/bg_personality.2ff1d0f9.gif';
 function BetweenNav() {
   return (
     <>
