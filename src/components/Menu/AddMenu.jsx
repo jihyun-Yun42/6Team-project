@@ -32,7 +32,7 @@ export const AddMenu = () => {
       return data;
     },
     onSuccess: () => {
-      queryClinet.invalidateQueries(keys.GET_MENU); // GET 요청을 다시함
+      queryClinet.invalidateQueries({ queryKey: keys.GET_MENU }); // GET 요청을 다시함
     },
     onError: (error) => {
       console.log(error);
@@ -79,8 +79,13 @@ export const AddMenu = () => {
         onChange={onChangeHandler}
         placeholder="가격을 입력해주세요"
       />
-      <select name="category" onChange={onChangeHandler}>
-        <option selected disabled>
+      <select
+        name="category"
+        defaultValue={'DEFAULT'}
+        value={this}
+        onChange={onChangeHandler}
+      >
+        <option value="DEFAULT" disabled>
           카테고리를 선택해주세요
         </option>
         <option value="NEW">신제품</option>
