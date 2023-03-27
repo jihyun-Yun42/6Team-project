@@ -8,6 +8,9 @@ import HeaderDelivery from '../components/HeaderDelivery';
 import NavDelivery from '../components/NavDelivery';
 import OrderCoution from '../components/OrderCoution';
 import { cookies } from '../shared/cookies';
+import { useQuery } from '@tanstack/react-query';
+import { apis } from '../axios/api';
+import { keys } from '../utils/createQueryKey';
 
 function DeliveryHome() {
   const navi = useNavigate();
@@ -18,6 +21,14 @@ function DeliveryHome() {
   //     navi('/login')
   //   }
   // },[])
+
+  const { data, isLoading } = useQuery({
+    queryKey: keys.GET_MENU,
+    // queryFn: async () => {
+    // const data = await apis.get('/api/list');
+    // console.log(data);
+    // },
+  });
   return (
     <>
       <HeaderDelivery />

@@ -1,13 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import api from '../../axios/api';
+import api, { apis } from '../../axios/api';
+import { keys } from '../../utils/createQueryKey';
 
 export const AddMenu = () => {
   const queryClinet = useQueryClient();
   const [newMenu, setNewMenu] = useState({
     title: '',
     category: '',
-    price: 0,
+    price: '',
     file: null,
   });
 
@@ -22,11 +23,16 @@ export const AddMenu = () => {
 
   const mutation = useMutation({
     mutationFn: async (payload) => {
-      const { data } = await api.post('/api/upload', payload);
+      console.log(payload);
+      const { data } = await apis.post('/api/upload', payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       return data;
     },
     onSuccess: () => {
-      queryClinet.invalidateQueries('addMenu'); // GET 요청을 다시함
+      queryClinet.invalidateQueries(keys.GET_MENU); // GET 요청을 다시함
     },
     onError: (error) => {
       console.log(error);
@@ -47,7 +53,7 @@ export const AddMenu = () => {
         setNewMenu({
           title: '',
           category: '',
-          price: 0,
+          price: '',
           file: null,
         }),
     });
@@ -59,14 +65,24 @@ export const AddMenu = () => {
         onChange={addFileHandler}
         accept="image/png, image/jpeg, image/jpg"
       />
-      <input type="text" name="title" value={newMenu.title} onChange={onChangeHandler} />
+      <input
+        type="text"
+        name="title"
+        value={newMenu.title}
+        onChange={onChangeHandler}
+        placeholder="버거 이름을 입력해주세요"
+      />
       <input
         type="number"
         name="price"
         value={newMenu.price}
         onChange={onChangeHandler}
+        placeholder="가격을 입력해주세요"
       />
       <select name="category" onChange={onChangeHandler}>
+        <option selected disabled>
+          카테고리를 선택해주세요
+        </option>
         <option value="NEW">신제품</option>
         <option value="premium">프리미엄</option>
         <option value="Whopper">와퍼&주니어</option>
