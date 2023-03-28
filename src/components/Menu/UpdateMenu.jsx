@@ -12,13 +12,12 @@ export const UpdateMenu = ({ item }) => {
     file: null,
   };
 
-  const [inputValue, onChangeHandler, fileInputHandler] = useFileInput({
-    editMenu,
-  });
+  const [inputValue, onChangeHandler, fileInputHandler] = useFileInput(editMenu);
+  console.log(inputValue);
 
   const submitFormHandler = (e) => {
-    const formData = new FormData();
     e.preventDefault();
+    const formData = new FormData();
     formData.append('title', inputValue.title);
     formData.append('category', inputValue.category);
     formData.append('price', inputValue.price);
@@ -35,21 +34,21 @@ export const UpdateMenu = ({ item }) => {
       <input
         type="text"
         name="title"
-        value={inputValue?.title || ''}
+        value={inputValue.title}
         onChange={onChangeHandler}
         placeholder="버거 이름을 입력해주세요"
       />
       <input
         type="text"
         name="price"
-        value={inputValue?.price || ''}
+        value={inputValue.price}
         onChange={onChangeHandler}
         placeholder="가격을 입력해주세요"
       />
       <select
         name="category"
         defaultValue={'DEFAULT'}
-        value={this}
+        value={inputValue.category}
         onChange={onChangeHandler}
       >
         <option value="DEFAULT" disabled>

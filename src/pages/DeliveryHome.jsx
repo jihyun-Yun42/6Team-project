@@ -33,13 +33,9 @@ function DeliveryHome() {
         <MenuList>
           <span style={{ color: 'black', fontSize: '40px' }}>메뉴</span>
           <MenuBar>
-            <button
-              value="NEW"
-              onClick={onClickCategory}
-              className={`menuBtn ${category === 'NEW' ? 'btnselect' : ''}`}
-            >
+            <MenuBtn value="NEW" onClick={onClickCategory}>
               신제품(NEW)
-            </button>
+            </MenuBtn>
             <MenuBtn value="premium" onClick={onClickCategory}>
               프리미엄
             </MenuBtn>
@@ -100,6 +96,7 @@ const MenuList = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  box-sizing: border-box;
 `;
 
 const MenuBar = styled.ul`
@@ -113,6 +110,7 @@ const MenuBtn = styled.button`
   font-size: 20px;
   font-family: 'TmoneyRoundWindExtraBold';
   color: #b8b8b8;
+  box-sizing: border-box;
   cursor: pointer;
   &:hover {
     color: #000;
@@ -120,6 +118,5 @@ const MenuBtn = styled.button`
   &:focus {
     color: #e22219;
     border-bottom: 3.5px solid #e22219;
-    box-sizing: border-box;
   }
 `;

@@ -15,17 +15,15 @@ export const AddMenu = () => {
     file: null,
   };
 
-  const [inputValue, onChangeHandler, fileInputHandler] = useFileInput({
-    newMenu,
-  });
+  const [inputValue, onChangeHandler, fileInputHandler] = useFileInput(newMenu);
 
   const submitFormHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('title', inputValue?.title);
-    formData.append('category', inputValue?.category);
-    formData.append('price', inputValue?.price);
-    formData.append('file', inputValue?.file);
+    formData.append('title', inputValue.title);
+    formData.append('category', inputValue.category);
+    formData.append('price', inputValue.price);
+    formData.append('file', inputValue.file);
     addMenu(formData);
   };
 
@@ -39,14 +37,14 @@ export const AddMenu = () => {
       <input
         type="text"
         name="title"
-        value={inputValue?.title || ''}
+        value={inputValue.title}
         onChange={onChangeHandler}
         placeholder="버거 이름을 입력해주세요"
       />
       <input
         type="text"
         name="price"
-        value={inputValue?.price || ''}
+        value={inputValue.price}
         onChange={onChangeHandler}
         placeholder="가격을 입력해주세요"
       />

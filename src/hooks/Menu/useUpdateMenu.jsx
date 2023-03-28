@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import React from 'react';
-import { apis } from '../../axios/api';
+import api from '../../axios/api';
 import { keys } from '../../utils/createQueryKey';
 
 export const useUpdateMenu = () => {
@@ -8,7 +7,8 @@ export const useUpdateMenu = () => {
 
   const { mutate: updateMenu } = useMutation({
     mutationFn: async (payload) => {
-      const { data } = await apis.patch(`/api/list${payload.id}`, payload.formData, {
+      console.log(payload);
+      const { data } = await api.patch(`/api/update/${payload.id}`, payload.formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

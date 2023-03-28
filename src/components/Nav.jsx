@@ -122,6 +122,7 @@ const MenuNavList = styled.li`
 
 const NavListUl = styled.ul`
   margin-top: 50px;
+  box-sizing: border-box;
 `;
 
 const NavListContent = styled.li`

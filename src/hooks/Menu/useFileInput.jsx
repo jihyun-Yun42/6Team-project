@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
-export const useFileInput = ({ initialState }) => {
+export const useFileInput = (initialState) => {
   const [inputValue, setInputValue] = useState(initialState);
 
-  console.log(inputValue);
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     name === 'price'

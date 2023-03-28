@@ -32,7 +32,6 @@ const Banner = () => {
     setNum(!num);
   };
 
-  console.log(index.current);
   return (
     <Slider>
       <div>
