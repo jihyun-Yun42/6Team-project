@@ -29,12 +29,10 @@ function Signup() {
     }
   };
 
-  console.log("signupUser", signupUser);
-
   return (
     <>
       <HeaderDelivery />
-      <NavDelivery margintop={"168px"} />
+      <NavDelivery margintop={"168px"} page="회원가입" />
       <SignupWrap>
         <SignupForm onSubmit={submitHandler}>
           <SignupBox>
@@ -49,7 +47,9 @@ function Signup() {
             닉네임:
             <input type="text" name="nickname" onChange={changeInputHandler} />
           </SignupBox>
-          <Button type="submit">회원가입</Button>
+          <Button bgcolor="red" type="submit">
+            회원가입
+          </Button>
         </SignupForm>
       </SignupWrap>
       <TotalFooter />
@@ -63,7 +63,7 @@ const SignupWrap = styled.div`
   min-height: 460px;
 `;
 const SignupForm = styled.form`
-  background-color: #555252;
+  background-color: #adadad;
   max-width: 600px;
   height: 400px;
   margin: 100px auto;
