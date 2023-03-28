@@ -8,11 +8,13 @@ import TotalFooter from "../components/TotalFooter";
 
 function Signup() {
   const [signupUser, setSignupUser] = useState({
-    Email: "",
+    username: "",
+    email: "",
+    password: "",
     nickname: "",
-    pw: "",
   });
 
+  console.log("signupUser", signupUser);
   const changeInputHandler = (event) => {
     const { value, name } = event.target;
     setSignupUser((old) => {
@@ -23,7 +25,7 @@ function Signup() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      // const result = await apis.post("/api/sigup", signupUser);
+      const result = await apis.post("/api/sigup", signupUser);
     } catch (e) {
       console.log("error", e);
     }
@@ -36,16 +38,24 @@ function Signup() {
       <SignupWrap>
         <SignupForm onSubmit={submitHandler}>
           <SignupBox>
-            이메일:
-            <input type="email" name="Email" onChange={changeInputHandler} />
+            email:
+            <input type="email" name="email" onChange={changeInputHandler} />
           </SignupBox>
           <SignupBox>
-            비밀번호:
-            <input type="password" name="pw" onChange={changeInputHandler} />
+            password:
+            <input
+              type="password"
+              name="password"
+              onChange={changeInputHandler}
+            />
           </SignupBox>
           <SignupBox>
-            닉네임:
+            nickname:
             <input type="text" name="nickname" onChange={changeInputHandler} />
+          </SignupBox>
+          <SignupBox>
+            username:
+            <input type="text" name="username" onChange={changeInputHandler} />
           </SignupBox>
           <Button bgcolor="red" type="submit">
             회원가입
