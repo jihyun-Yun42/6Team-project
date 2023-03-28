@@ -34,7 +34,7 @@ function Signup() {
   return (
     <>
       <HeaderDelivery />
-      <NavDelivery margintop={"168px"} />
+      <NavDelivery margintop={"168px"} page="회원가입" />
       <SignupWrap>
         <SignupForm onSubmit={submitHandler}>
           <SignupBox>
