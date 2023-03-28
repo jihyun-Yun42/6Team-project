@@ -1,5 +1,6 @@
 import { useFileInput } from '../../hooks/Menu/useFileInput';
 import { useUpdateMenu } from '../../hooks/Menu/useUpdateMenu';
+import Input, { FileForm, FileLabel } from '../Input';
 import { ModalRoot, ModalTrigger } from '../Modal';
 
 export const UpdateMenu = ({ item }) => {
@@ -25,20 +26,24 @@ export const UpdateMenu = ({ item }) => {
     updateMenu({ formData, id: item.id });
   };
   return (
-    <form onSubmit={submitFormHandler}>
-      <input
-        type="file"
-        onChange={fileInputHandler}
-        accept="image/png, image/jpeg, image/jpg"
-      />
-      <input
+    <FileForm onSubmit={submitFormHandler}>
+      <FileLabel>
+        사진올리기
+        <input
+          type="file"
+          onChange={fileInputHandler}
+          accept="image/png, image/jpeg, image/jpg"
+          style={{ display: 'none' }}
+        />
+      </FileLabel>
+      <Input
         type="text"
         name="title"
         value={inputValue.title}
         onChange={onChangeHandler}
         placeholder="버거 이름을 입력해주세요"
       />
-      <input
+      <Input
         type="text"
         name="price"
         value={inputValue.price}
@@ -50,6 +55,13 @@ export const UpdateMenu = ({ item }) => {
         defaultValue={'DEFAULT'}
         value={inputValue.category}
         onChange={onChangeHandler}
+        style={{
+          border: '1px solid lightgray',
+          borderRadius: '10px',
+          padding: '10px',
+          fontSize: '18px',
+          fontFamily: 'TmoneyRoundWindExtraBold',
+        }}
       >
         <option value="DEFAULT" disabled>
           카테고리를 선택해주세요
@@ -63,10 +75,10 @@ export const UpdateMenu = ({ item }) => {
         <option value="dog">독퍼</option>
       </select>
       <ModalRoot>
-        <ModalTrigger>
-          <button type="submit">제출</button>
-        </ModalTrigger>
+        {/* <ModalTrigger> */}
+        <button type="submit">제출</button>
+        {/* </ModalTrigger> */}
       </ModalRoot>
-    </form>
+    </FileForm>
   );
 };

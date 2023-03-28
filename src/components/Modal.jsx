@@ -26,7 +26,7 @@ const Background = styled.div`
 `;
 
 export const ModalTrigger = ({ children }) => {
-  const { setOpen } = useContext(Context);
+  const { open, setOpen } = useContext(Context);
   return <Modalonoff onClick={() => setOpen((pre) => !pre)}>{children}</Modalonoff>;
 };
 
@@ -36,16 +36,17 @@ const Modalonoff = styled.div`
 
 export const ModalContent = ({ children }) => {
   const { open, setOpen } = useContext(Context);
+  console.log(open);
   return (
     open && (
       <ContentBox>
-        <BtnCard
+        {/* <BtnCard
           onClick={() => {
             setOpen((pre) => !pre);
           }}
         >
           <FiX />
-        </BtnCard>
+        </BtnCard> */}
         {children}
       </ContentBox>
     )
@@ -76,7 +77,11 @@ const ContentBox = styled.div`
   box-sizing: border-box;
 `;
 
-export const ModalCloseBtn = ({ children }) => {
+export const ModalCloseBtn = ({ children, ...rest }) => {
   const { setOpen } = useContext(Context);
-  return <BtnCard onClick={() => setOpen((pre) => !pre)}>{children}</BtnCard>;
+  return (
+    <BtnCard onClick={() => setOpen((pre) => !pre)} {...rest}>
+      {children}
+    </BtnCard>
+  );
 };
