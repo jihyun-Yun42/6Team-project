@@ -24,7 +24,7 @@ function DeliveryHome() {
   };
   console.log(category);
 
-  if (!menuData || getMenuIsLoading) return <div>로딩중...</div>;
+  // if (!menuData || getMenuIsLoading) return <div>로딩중...</div>;
 
   return (
     <>
@@ -59,7 +59,7 @@ function DeliveryHome() {
           </MenuBar>
         </MenuList>
         <Tab_cont>
-          {menuData.map((item) => item.category === category && <Card item={item} />)}
+          {/* {menuData.map((item) => item.category === category && <Card item={item} />)} */}
         </Tab_cont>
       </MenuArea>
       <ModalRoot>

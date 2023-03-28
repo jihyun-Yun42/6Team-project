@@ -74,12 +74,3 @@ const BtnCard = styled.button`
   font-size: 25px;
   cursor: pointer;
 `;
-
-const UpdateCard = styled.button`
-  position: absolute;
-  right: 30px;
-  border: 0;
-  background-color: transparent;
-  font-size: 23px;
-  cursor: pointer;
-`;
