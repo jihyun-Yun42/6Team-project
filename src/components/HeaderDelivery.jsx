@@ -1,11 +1,18 @@
-import styled from 'styled-components';
-import Button from '../components/Button';
-import LogoImg from '../assets/burgerkingLogo.png';
-import { useNavigate } from 'react-router';
-import { Flex } from './Flex';
-
+import styled from "styled-components";
+import Button from "../components/Button";
+import LogoImg from "../assets/burgerkingLogo.png";
+import { useNavigate } from "react-router";
+import { Flex } from "./Flex";
+import { cookies } from "../shared/cookies";
+import { FaUserCircle } from "react-icons/fa";
 function HeaderDelivery({ name }) {
   const navi = useNavigate();
+  const token = cookies.get("token");
+  const userID = cookies.get("userId");
+  const logOutHandler = () => {
+    cookies.remove("token");
+    navi("/deliveryHome");
+  };
   return (
     <>
       <HeaderWrap>
@@ -14,26 +21,57 @@ function HeaderDelivery({ name }) {
             <div>
               <UtilWrap>
                 <UtilA>
-                  <DeliveryText onClick={() => navi('/')}>브랜드홈</DeliveryText>
+                  <DeliveryText onClick={() => navi("/")}>
+                    브랜드홈
+                  </DeliveryText>
                 </UtilA>
-                <UtilA>
-                  <DeliveryText onClick={() => navi('/login')}>로그인</DeliveryText>
-                </UtilA>
+                {token ? (
+                  <>
+                    <UtilA>
+                      <DeliveryText onClick={logOutHandler}>
+                        로그아웃
+                      </DeliveryText>
+                    </UtilA>
+                    <UtilA>
+                      <DeliveryText>MY킹</DeliveryText>
+                    </UtilA>
+                  </>
+                ) : (
+                  <UtilA>
+                    <DeliveryText onClick={() => navi("/login")}>
+                      로그인
+                    </DeliveryText>
+                  </UtilA>
+                )}
                 <UtilA>
                   <DeliveryText>고객센터</DeliveryText>
                 </UtilA>
               </UtilWrap>
               <Flex ai="flex-end" jc="space-between">
                 <LogoH1>
-                  <LogoImage src={`${LogoImg}`} onClick={() => navi('/')} />
+                  <LogoImage src={`${LogoImg}`} onClick={() => navi("/")} />
                   <span>{name}</span>
                 </LogoH1>
-
-                <Join>
-                  <Button brown onClick={() => navi('/join')}>
-                    회원가입
-                  </Button>
-                </Join>
+                {token ? (
+                  <UserInfo>
+                    <UserImage>
+                      <FaUserCircle>이미지</FaUserCircle>
+                    </UserImage>
+                    <div>
+                      <UserName>
+                        {userID}
+                        <span>님 안녕하세요</span>
+                      </UserName>
+                      <span>MY킹 바로가기</span>
+                    </div>
+                  </UserInfo>
+                ) : (
+                  <Join>
+                    <Button brown onClick={() => navi("/join")}>
+                      회원가입
+                    </Button>
+                  </Join>
+                )}
               </Flex>
             </div>
           </Container>
@@ -44,6 +82,30 @@ function HeaderDelivery({ name }) {
 }
 
 export default HeaderDelivery;
+
+const UserName = styled.p`
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+`;
+
+const UserImage = styled.div`
+  font-size: 50px;
+  color: black;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 60px;
+`;
+
+const UserInfo = styled.div`
+  display: flex;
+  gap: 10px;
+  width: 250px;
+  height: 46px;
+  color: white;
+`;
 
 const LogoImage = styled.img`
   width: 82px;
