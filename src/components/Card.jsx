@@ -11,6 +11,7 @@ import { useDeleteMenu } from '../hooks/Menu/useDeleteMenu';
 
 export const Card = ({ item }) => {
   const { deleteMenu } = useDeleteMenu();
+  console.log(item.url);
   return (
     <CardBox key={item.id}>
       <ModalRoot>
@@ -33,7 +34,7 @@ export const Card = ({ item }) => {
       >
         <FiX />
       </BtnCard>
-      <CardImg>사진넣을공간</CardImg>
+      <CardImg style={{ backgroundImage: `url(${item.url})` }} />
       <CardBurgerName>{item.title}</CardBurgerName>
       <CardBurgerPrice>₩{item.price}~</CardBurgerPrice>
     </CardBox>
@@ -43,8 +44,7 @@ export const Card = ({ item }) => {
 const CardBox = styled.div`
   position: relative;
   width: 240px;
-  border: 1px solid;
-  min-height: 230px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,9 +53,11 @@ const CardBox = styled.div`
 
 const CardImg = styled.div`
   width: 240px;
-  background-color: aliceblue;
   height: 180px;
   margin-bottom: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 `;
 
 const CardBurgerName = styled.div`
@@ -72,14 +74,5 @@ const BtnCard = styled.button`
   border: 0;
   background-color: transparent;
   font-size: 25px;
-  cursor: pointer;
-`;
-
-const UpdateCard = styled.button`
-  position: absolute;
-  right: 30px;
-  border: 0;
-  background-color: transparent;
-  font-size: 23px;
   cursor: pointer;
 `;

@@ -6,21 +6,25 @@ export const UpdateMenu = ({ item }) => {
   const { updateMenu } = useUpdateMenu();
 
   const editMenu = {
-    id: item.id,
     title: item.title,
     category: item.category,
     price: item.price,
     file: null,
   };
 
-  const [inputValue, onChangeHandler, fileInputHandler, submitFormHandler] = useFileInput(
-    {
-      editMenu,
-      updateMenu,
-      id: editMenu.id,
-    }
-  );
+  const [inputValue, onChangeHandler, fileInputHandler] = useFileInput({
+    editMenu,
+  });
 
+  const submitFormHandler = (e) => {
+    const formData = new FormData();
+    e.preventDefault();
+    formData.append('title', inputValue.title);
+    formData.append('category', inputValue.category);
+    formData.append('price', inputValue.price);
+    formData.append('file', inputValue.file);
+    updateMenu({ formData, id: item.id });
+  };
   return (
     <form onSubmit={submitFormHandler}>
       <input
@@ -31,14 +35,14 @@ export const UpdateMenu = ({ item }) => {
       <input
         type="text"
         name="title"
-        value={inputValue.title}
+        value={inputValue?.title || ''}
         onChange={onChangeHandler}
         placeholder="버거 이름을 입력해주세요"
       />
       <input
         type="text"
         name="price"
-        value={inputValue.price}
+        value={inputValue?.price || ''}
         onChange={onChangeHandler}
         placeholder="가격을 입력해주세요"
       />
