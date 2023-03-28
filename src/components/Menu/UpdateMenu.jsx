@@ -1,27 +1,25 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import React, { useState } from 'react';
-import { apis } from '../../axios/api';
 import { useFileInput } from '../../hooks/Menu/useFileInput';
 import { useUpdateMenu } from '../../hooks/Menu/useUpdateMenu';
-import { keys } from '../../utils/createQueryKey';
 import { ModalRoot, ModalTrigger } from '../Modal';
 
 export const UpdateMenu = ({ item }) => {
   const { updateMenu } = useUpdateMenu();
 
-  const [inputValue, onChangeHandler, fileInputHandler, submitFormHandler] = useFileInput(
-    {
-      editMenu,
-      updateMenu,
-    }
-  );
-
   const editMenu = {
+    id: item.id,
     title: item.title,
     category: item.category,
     price: item.price,
     file: null,
   };
+
+  const [inputValue, onChangeHandler, fileInputHandler, submitFormHandler] = useFileInput(
+    {
+      editMenu,
+      updateMenu,
+      id: editMenu.id,
+    }
+  );
 
   return (
     <form onSubmit={submitFormHandler}>

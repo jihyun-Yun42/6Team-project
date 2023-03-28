@@ -8,7 +8,7 @@ export const useUpdateMenu = () => {
 
   const { mutate: updateMenu } = useMutation({
     mutationFn: async (payload) => {
-      const { data } = await apis.patch(`/api/list${payload.id}`, payload, {
+      const { data } = await apis.patch(`/api/list${payload.id}`, payload.formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

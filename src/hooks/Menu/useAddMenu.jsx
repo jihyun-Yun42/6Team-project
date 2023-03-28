@@ -9,7 +9,7 @@ export const useAddMenu = () => {
   const { mutate: addMenu, isLoading: addMenuIsLoding } = useMutation({
     mutationFn: async (payload) => {
       console.log(payload);
-      const { data } = await apis.post('/api/upload', payload, {
+      const { data } = await apis.post('/api/upload', payload.formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
