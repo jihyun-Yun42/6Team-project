@@ -25,6 +25,7 @@ function DeliveryHome() {
   const onClickCategory = (e) => {
     setCategory(e.target.value);
   };
+  console.log(category);
   const { data, isLoading } = useQuery({
     queryKey: keys.GET_MENU,
     queryFn: async () => {
@@ -37,66 +38,37 @@ function DeliveryHome() {
 
   return (
     <>
-      <HeaderDelivery />
+      <HeaderDelivery name={'딜리버리'} />
       <BetweenNav />
       <NavDelivery />
       <MenuArea>
         <MenuList>
           <span style={{ color: 'black', fontSize: '40px' }}>메뉴</span>
           <MenuBar>
-            <MenuBtn
-              value="NEW"
-              onClick={onClickCategory}
-              className={category === 'NEW' && 'btnselect'}
-            >
+            <MenuBtn value="NEW" onClick={onClickCategory}>
               신제품(NEW)
             </MenuBtn>
-            <MenuBtn
-              value="premium"
-              onClick={onClickCategory}
-              className={category === 'premium' && 'btnselect'}
-            >
+            <MenuBtn value="premium" onClick={onClickCategory}>
               프리미엄
             </MenuBtn>
-            <MenuBtn
-              value="Whopper"
-              onClick={onClickCategory}
-              className={category === 'Whopper' && 'btnselect'}
-            >
+            <MenuBtn value="Whopper" onClick={onClickCategory}>
               와퍼&주니어
             </MenuBtn>
-            <MenuBtn
-              value="chicken"
-              onClick={onClickCategory}
-              className={category === 'chicken' && 'btnselect'}
-            >
+            <MenuBtn value="chicken" onClick={onClickCategory}>
               치킨&슈림프버거
             </MenuBtn>
-            <MenuBtn
-              value="side"
-              onClick={onClickCategory}
-              className={category === 'side' && 'btnselect'}
-            >
+            <MenuBtn value="side" onClick={onClickCategory}>
               사이드
             </MenuBtn>
-            <MenuBtn
-              value="drink"
-              onClick={onClickCategory}
-              className={category === 'drink' && 'btnselect'}
-            >
+            <MenuBtn value="drink" onClick={onClickCategory}>
               음료&디저트
             </MenuBtn>
-            <MenuBtn
-              value="dog"
-              onClick={onClickCategory}
-              className={category === 'dog' && 'btnselect'}
-            >
+            <MenuBtn value="dog" onClick={onClickCategory}>
               독퍼
             </MenuBtn>
           </MenuBar>
         </MenuList>
         <Tab_cont>
-          {/* {data.filter((item) => item.category === category && console.log(item))} */}
           {data.map((item) => item.category === category && <Card item={item} />)}
         </Tab_cont>
       </MenuArea>
@@ -118,8 +90,8 @@ function DeliveryHome() {
 export default DeliveryHome;
 
 const Tab_cont = styled.div`
-  background-color: #aad3d3;
-  height: 522px;
+  /* background-color: #aad3d3; */
+  /* height: 522px; */
   display: flex;
   gap: 3%;
   flex-wrap: wrap;
@@ -141,7 +113,6 @@ const MenuList = styled.div`
 const MenuBar = styled.ul`
   display: flex;
   gap: 30px;
-  /* font-size: 20px; */
 `;
 
 const MenuBtn = styled.button`
@@ -151,7 +122,12 @@ const MenuBtn = styled.button`
   font-family: 'TmoneyRoundWindExtraBold';
   color: #b8b8b8;
   cursor: pointer;
-  &:active {
+  &:hover {
+    color: #000;
+  }
+  &:focus {
     color: #e22219;
+    border-bottom: 3.5px solid #e22219;
+    box-sizing: border-box;
   }
 `;

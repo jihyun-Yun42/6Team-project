@@ -1,3 +1,8 @@
 .btnselect {
   color: #e22219;
+  border-bottom: 4px solid #e22219;
+  box-sizing: border-box;
+}
+.btnselect:hover {
+  color: #e22219;
 }

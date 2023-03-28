@@ -15,7 +15,15 @@ export const AddMenu = () => {
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
-    setNewMenu({ ...newMenu, [name]: value });
+    name === 'price'
+      ? setNewMenu({
+          ...newMenu,
+          price: value
+            .replace(/[^0-9]/g, '')
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+        })
+      : setNewMenu({ ...newMenu, [name]: value });
   };
 
   const addFileHandler = (e) => {
@@ -74,7 +82,7 @@ export const AddMenu = () => {
         placeholder="버거 이름을 입력해주세요"
       />
       <input
-        type="number"
+        type="text"
         name="price"
         value={newMenu.price}
         onChange={onChangeHandler}

@@ -18,16 +18,20 @@ const Background = styled.div`
   background-color: gray;
   opacity: 0.7;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   z-index: 50;
 `;
 
 export const ModalTrigger = ({ children }) => {
-  const { open, setOpen } = useContext(Context);
-  console.log('Modal', open);
-  return <div onClick={() => setOpen((pre) => !pre)}>{children}</div>;
+  const { setOpen } = useContext(Context);
+  return <Modalonoff onClick={() => setOpen((pre) => !pre)}>{children}</Modalonoff>;
 };
+
+const Modalonoff = styled.div`
+  display: contents;
+`;
 
 export const ModalContent = ({ children }) => {
   const { open } = useContext(Context);
@@ -38,8 +42,8 @@ const ContentBox = styled.div`
   width: 400px;
   height: 400px;
   background-color: white;
-  position: absolute;
-  top: 0%;
+  position: fixed;
+  top: 0;
   z-index: 51;
   left: 50%;
   right: 50%;
