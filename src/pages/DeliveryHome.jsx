@@ -15,9 +15,11 @@ import {
 } from '../components/Modal';
 import { useGetMenu } from '../hooks/Menu/useGetMenu';
 
+
 function DeliveryHome() {
   const { menuData, getMenuIsLoading } = useGetMenu();
   const [category, setCategory] = useState('신제품');
+
 
   const onClickCategory = (e) => {
     setCategory(e.target.value);
@@ -26,6 +28,22 @@ function DeliveryHome() {
 
   if (!menuData || getMenuIsLoading) return <div>로딩중...</div>;
 
+  const location = useLocation();
+
+  const getNaverToken = async () => {
+    try {
+      if (!location.hash) return;
+      // const token = location.hash.split("=")[1].split("&")[0]; //token 출력
+      const token = location.hash.split("=")[1].split("&")[0]; //token 출력
+      console.log("token", token);
+    } catch (e) {
+      console.log("e", e);
+    }
+  };
+
+  useEffect(() => {
+    getNaverToken();
+  }, []);
   return (
     <>
       <HeaderDelivery name={'딜리버리'} />
@@ -33,7 +51,7 @@ function DeliveryHome() {
       <NavDelivery />
       <MenuArea>
         <MenuList>
-          <span style={{ color: 'black', fontSize: '40px' }}>메뉴</span>
+          <span style={{ color: "black", fontSize: "40px" }}>메뉴</span>
           <MenuBar>
             <MenuBtn value="NEW" onClick={onClickCategory}>
               신제품(NEW)
