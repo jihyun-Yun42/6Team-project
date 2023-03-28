@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { apis } from "../axios/api";
 import Button from "../components/Button";
 import HeaderDelivery from "../components/HeaderDelivery";
 import NavDelivery from "../components/NavDelivery";
@@ -19,9 +20,13 @@ function Signup() {
     });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    alert("실험용");
+    try {
+      // const result = await apis.post("/api/sigup", signupUser);
+    } catch (e) {
+      console.log("error", e);
+    }
   };
 
   console.log("signupUser", signupUser);

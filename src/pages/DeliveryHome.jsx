@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AddMenu } from "../components/Menu/AddMenu";
 import BetweenNav from "../components/BetweenNav";
