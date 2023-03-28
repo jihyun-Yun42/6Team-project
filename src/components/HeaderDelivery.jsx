@@ -4,7 +4,7 @@ import LogoImg from '../assets/burgerkingLogo.png';
 import { useNavigate } from 'react-router';
 import { Flex } from './Flex';
 
-function HeaderDelivery() {
+function HeaderDelivery({ name }) {
   const navi = useNavigate();
   return (
     <>
@@ -26,7 +26,7 @@ function HeaderDelivery() {
               <Flex ai="flex-end" jc="space-between">
                 <LogoH1>
                   <LogoImage src={`${LogoImg}`} onClick={() => navi('/')} />
-                  <span>버거킹</span>
+                  <span>{name}</span>
                 </LogoH1>
 
                 <Join>
