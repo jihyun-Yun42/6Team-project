@@ -16,34 +16,23 @@ import {
 import { useGetMenu } from '../hooks/Menu/useGetMenu';
 
 
+
 function DeliveryHome() {
   const { menuData, getMenuIsLoading } = useGetMenu();
   const [category, setCategory] = useState('신제품');
 
+  const { data, isLoading } = useQuery({
+    queryKey: keys.GET_MENU,
+    queryFn: async () => {
+      const data = await apis.get("/api/menus/list");
+      return data.data;
+    },
+  });
+  console.log(data);
 
-  const onClickCategory = (e) => {
-    setCategory(e.target.value);
-  };
-  console.log(category);
+  // if (!data || isLoading) return <div>로딩중...</div>;
 
-  if (!menuData || getMenuIsLoading) return <div>로딩중...</div>;
 
-  const location = useLocation();
-
-  const getNaverToken = async () => {
-    try {
-      if (!location.hash) return;
-      // const token = location.hash.split("=")[1].split("&")[0]; //token 출력
-      const token = location.hash.split("=")[1].split("&")[0]; //token 출력
-      console.log("token", token);
-    } catch (e) {
-      console.log("e", e);
-    }
-  };
-
-  useEffect(() => {
-    getNaverToken();
-  }, []);
   return (
     <>
       <HeaderDelivery name={'딜리버리'} />
@@ -77,7 +66,7 @@ function DeliveryHome() {
           </MenuBar>
         </MenuList>
         <Tab_cont>
-          {menuData.map((item) => item.category === category && <Card item={item} />)}
+          {/* {menuData.map((item) => item.category === category && <Card item={item} />)} */}
         </Tab_cont>
       </MenuArea>
       <ModalRoot>

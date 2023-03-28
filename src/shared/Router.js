@@ -5,6 +5,7 @@ import DeliveryHome from "../pages/DeliveryHome";
 import Home from "../pages/Home";
 import Join from "../pages/Join";
 import Login from "../pages/Login";
+import OAuthKakao from "../pages/OAuthKakao";
 import Signup from "../pages/Signup";
 import StoreSearch from "../pages/StoreSearch";
 
@@ -19,7 +20,7 @@ function Router() {
         <Route path="/deliveryHome" element={<DeliveryHome />} />
         <Route path="/storeSearch" element={<StoreSearch />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/naver" component={<NaverLogin />} />
+        <Route path="/oauth/kakao" element={<OAuthKakao />} />
       </Routes>
     </BrowserRouter>
   );
