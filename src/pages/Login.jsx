@@ -99,7 +99,6 @@ function Login() {
           </OAuthArea>
         </LoginUI>
       </LoginContainer>
-      <NoneUserContainer>비회원구역</NoneUserContainer>
       <TotalFooter />
     </>
   );
@@ -152,8 +151,4 @@ const LoginContainer = styled.div`
   max-width: 1184px;
   background-color: #ffffff;
   padding: 75px 25px 0px;
-`;
-const NoneUserContainer = styled.div`
-  background-color: #f2ebe6;
-  height: 465px;
 `;
