@@ -1,10 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const OrderCoution = () => {
   return (
-    <div>
-      <div>유의사항,원산지, 영양성분, 알레르기 유발성분</div>
-      <ul>
+    <Caution>
+      <CautionTitle>유의사항</CautionTitle>
+      <CautionContentList>
         <li>매장별 주문금액이 상이하니, 반드시 최소금액을 확인하기 바랍니다.</li>
         <li>배달 소요시간은 기상조건이나 매장 사정상 지연 또는 제한될 수 있습니다.</li>
         <li>
@@ -20,9 +21,30 @@ const OrderCoution = () => {
         <li>제품 가격 및 메뉴 구성은 본사 사정상 변경될 수 있습니다.</li>
         <li>대량 주문의 경우 콜센터(1599-0505)주문으로만 가능합니다.</li>
         <li>주문 완료 후 변경 및 취소는 콜센터(1599-0505)에서만 가능합니다.</li>
-      </ul>
-    </div>
+      </CautionContentList>
+    </Caution>
   );
 };
 
+const Caution = styled.div`
+  max-width: 1184px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const CautionTitle = styled.div`
+  font-size: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid;
+`;
+
+const CautionContentList = styled.div`
+  font-family: 'IBMPlexSansKR-Regular';
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+`;
 export default OrderCoution;
