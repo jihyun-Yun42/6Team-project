@@ -63,7 +63,7 @@ const BtnCard = styled.button`
 
 const ContentBox = styled.div`
   width: 400px;
-  height: 400px;
+  /* height: 400px; */
   background-color: white;
   position: fixed;
   top: 0;
@@ -75,3 +75,8 @@ const ContentBox = styled.div`
   border-radius: 30px;
   box-sizing: border-box;
 `;
+
+export const ModalCloseBtn = ({ children }) => {
+  const { setOpen } = useContext(Context);
+  return <BtnCard onClick={() => setOpen((pre) => !pre)}>{children}</BtnCard>;
+};

@@ -4,7 +4,7 @@ import api, { apis } from '../../axios/api';
 import { useAddMenu } from '../../hooks/Menu/useAddMenu';
 import { useFileInput } from '../../hooks/Menu/useFileInput';
 import { keys } from '../../utils/createQueryKey';
-import { ModalRoot, ModalTrigger } from '../Modal';
+import { ModalCloseBtn, ModalRoot, ModalTrigger } from '../Modal';
 
 export const AddMenu = () => {
   const { addMenu } = useAddMenu();
@@ -66,9 +66,9 @@ export const AddMenu = () => {
         <option value="dog">독퍼</option>
       </select>
       <ModalRoot>
-        <ModalTrigger>
-          <button type="submit">제출</button>
-        </ModalTrigger>
+        <button type="submit">
+          <ModalTrigger>제출</ModalTrigger>
+        </button>
       </ModalRoot>
     </form>
   );

@@ -1,18 +1,15 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-function NavDelivery({ margintop }) {
+function NavDelivery({ margintop, page }) {
   return (
     <>
       <NavBarwrap margintop={margintop}>
         <NavContainer>
           <NavPage>
-            <a>
-              <span>Home</span>
-            </a>
-            <a>
-              <span>로그인</span>
-            </a>
+            <NavText>Home</NavText>
+            {'>'}
+            <NavText>{page}</NavText>
           </NavPage>
         </NavContainer>
       </NavBarwrap>
@@ -41,4 +38,8 @@ const NavContainer = styled.div`
 const NavPage = styled.div`
   float: left;
   font-size: 0.875rem;
+`;
+
+const NavText = styled.span`
+  margin: 10px;
 `;

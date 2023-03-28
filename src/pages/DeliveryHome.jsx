@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { AddMenu } from "../components/Menu/AddMenu";
-import BetweenNav from "../components/BetweenNav";
-import HeaderDelivery from "../components/HeaderDelivery";
-import NavDelivery from "../components/NavDelivery";
-import OrderCoution from "../components/OrderCoution";
-import TotalFooter from "../components/TotalFooter";
-import { Card } from "../components/Card";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { AddMenu } from '../components/Menu/AddMenu';
+import BetweenNav from '../components/BetweenNav';
+import HeaderDelivery from '../components/HeaderDelivery';
+import NavDelivery from '../components/NavDelivery';
+import OrderCoution from '../components/OrderCoution';
+import TotalFooter from '../components/TotalFooter';
+import { Card } from '../components/Card';
 import {
   ModalBackground,
   ModalContent,
@@ -26,9 +26,9 @@ function DeliveryHome() {
 
   return (
     <>
-      <HeaderDelivery name={"딜리버리"} />
+      <HeaderDelivery name={'딜리버리'} />
       <BetweenNav />
-      <NavDelivery />
+      <NavDelivery page="딜리버리" />
       <MenuArea>
         <MenuList>
           <span style={{ color: 'black', fontSize: '40px' }}>메뉴</span>
@@ -102,7 +102,7 @@ const MenuBtn = styled.button`
   border: 0px;
   background-color: transparent;
   font-size: 20px;
-  font-family: "TmoneyRoundWindExtraBold";
+  font-family: 'TmoneyRoundWindExtraBold';
   color: #b8b8b8;
   box-sizing: border-box;
   cursor: pointer;
