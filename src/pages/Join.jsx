@@ -82,7 +82,6 @@ const LoginSimple = styled.div`
   max-width: 485px;
   padding-left: 8.74%;
   float: right;
-  background-color: #6197c5;
 `;
 
 const Login = styled.div`
@@ -90,14 +89,13 @@ const Login = styled.div`
   width: 50%;
   min-width: 530px;
   padding-right: 5.23%;
-  border-right: 1px solid #e5e5e5;
-  /* background-color: #e6e6e6; */
+  border-right: 3px solid #c5c1c1;
+
   float: left;
 `;
 
 const LoginUi = styled.div`
   margin: 20px 0px;
-  border: 2px solid black;
   background-color: #ebebeb;
   border-radius: 20px;
   min-height: 560px;
