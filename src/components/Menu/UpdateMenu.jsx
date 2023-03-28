@@ -7,6 +7,7 @@ export const UpdateMenu = ({ item }) => {
   const { updateMenu } = useUpdateMenu();
 
   const editMenu = {
+    id: item.id,
     title: item.title,
     category: item.category,
     price: item.price,
@@ -19,11 +20,17 @@ export const UpdateMenu = ({ item }) => {
   const submitFormHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('title', inputValue.title);
-    formData.append('category', inputValue.category);
-    formData.append('price', inputValue.price);
+    // formData.append('title', inputValue.title);
+    // formData.append('category', inputValue.category);
+    // formData.append('price', inputValue.price);
     formData.append('file', inputValue.file);
-    updateMenu({ formData, id: item.id });
+    updateMenu({
+      formData,
+      title: inputValue.title,
+      category: inputValue.category,
+      price: inputValue.price,
+      id: inputValue.id,
+    });
   };
   return (
     <FileForm onSubmit={submitFormHandler}>
