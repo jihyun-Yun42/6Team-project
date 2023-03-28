@@ -1,26 +1,25 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import React, { useState } from 'react';
-import api, { apis } from '../../axios/api';
-import { useAddMenu } from '../../hooks/Menu/useAddMenu';
-import { useFileInput } from '../../hooks/Menu/useFileInput';
-import { keys } from '../../utils/createQueryKey';
-import { ModalRoot, ModalTrigger } from '../Modal';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import React, { useState } from "react";
+import api, { apis } from "../../axios/api";
+import { useAddMenu } from "../../hooks/Menu/useAddMenu";
+import { useFileInput } from "../../hooks/Menu/useFileInput";
+import { keys } from "../../utils/createQueryKey";
+import { ModalRoot, ModalTrigger } from "../Modal";
 
 export const AddMenu = () => {
   const { addMenu } = useAddMenu();
   const newMenu = {
-    title: '',
-    category: '',
-    price: '',
+    title: "",
+    category: "",
+    price: "",
     file: null,
   };
 
-  const [inputValue, onChangeHandler, fileInputHandler, submitFormHandler] = useFileInput(
-    {
+  const [inputValue, onChangeHandler, fileInputHandler, submitFormHandler] =
+    useFileInput({
       newMenu,
       addMenu,
-    }
-  );
+    });
   return (
     <form onSubmit={submitFormHandler}>
       <input
@@ -44,7 +43,7 @@ export const AddMenu = () => {
       />
       <select
         name="category"
-        defaultValue={'DEFAULT'}
+        defaultValue={"DEFAULT"}
         value={this}
         onChange={onChangeHandler}
       >

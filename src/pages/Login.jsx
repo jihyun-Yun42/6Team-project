@@ -29,7 +29,7 @@ function Login() {
       const token = result.headers.authorization.split(" ")[1];
       const decodeToken = jwtDecode(token);
       cookies.set("token", token, { path: "/" });
-      cookies.set("userId", decodeToken.sub, { path: "/" });
+      cookies.set("userId", decodeToken.auth, { path: "/" });
       alert("로그인성공");
       navi("/deliveryHome");
     } catch (event) {
