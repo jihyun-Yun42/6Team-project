@@ -2,57 +2,61 @@ import React from 'react';
 import styled from 'styled-components';
 import { BsInstagram } from 'react-icons/bs';
 import { AiFillFacebook } from 'react-icons/ai';
-function TotalFooter() {
+import Footer from './Footer';
+function TotalFooter({ main }) {
   return (
-    <Footer>
-      <FooterContainer>
-        <FooterMenu>
-          <MenuUl>
-            <MenuLi>
-              <MenuA>
-                <span>이용약관</span>
-              </MenuA>
-            </MenuLi>
-            <MenuLi>
-              <MenuA>
-                <span>개인정보처리방침</span>
-              </MenuA>
-            </MenuLi>
-            <MenuLi>
-              <MenuA>
-                <span>법적고지</span>
-              </MenuA>
-            </MenuLi>
-          </MenuUl>
-          <FooterBtn>
-            <BtnA>
-              <span>인재채용</span>
-            </BtnA>
-            <BtnA>
-              <span>가맹점모집</span>
-            </BtnA>
-          </FooterBtn>
-        </FooterMenu>
-        <div className="copyright">
-          <BKRLogo>
-            <img src="/assets/BKRLogo.png" />
-          </BKRLogo>
-          <BKRP>
-            서울 종로구 삼봉로 71 G 타워 2층 주식회사 비케이알{' '}
-            <span className="footer_line"></span> 전화주문 1599-0505
-          </BKRP>
-          <BKRP>
-            <a>사업자 등록번호 101-86-76277</a>
-            <span className="footer_line"></span> (주)BKR 대표이사 문영주, 이동형
-          </BKRP>
-          <BKRP>Copyright 2019 BKR Co., Ltd. All right Reserved</BKRP>
-          <Sns>
-            <AiFillFacebook style={{ fontSize: '30px' }}>페이스북</AiFillFacebook>
-            <BsInstagram style={{ fontSize: '28px' }}>인스타그램</BsInstagram>
-          </Sns>
-        </div>
-      </FooterContainer>
-    </Footer>
+    <>
+      {main && <Footer />}
+      <TFooter>
+        <FooterContainer>
+          <FooterMenu>
+            <MenuUl>
+              <MenuLi>
+                <MenuA>
+                  <span>이용약관</span>
+                </MenuA>
+              </MenuLi>
+              <MenuLi>
+                <MenuA>
+                  <span>개인정보처리방침</span>
+                </MenuA>
+              </MenuLi>
+              <MenuLi>
+                <MenuA>
+                  <span>법적고지</span>
+                </MenuA>
+              </MenuLi>
+            </MenuUl>
+            <FooterBtn>
+              <BtnA>
+                <span>인재채용</span>
+              </BtnA>
+              <BtnA>
+                <span>가맹점모집</span>
+              </BtnA>
+            </FooterBtn>
+          </FooterMenu>
+          <div>
+            <BKRLogo>
+              <img src="/assets/BKRLogo.png" />
+            </BKRLogo>
+            <BKRP>
+              서울 종로구 삼봉로 71 G 타워 2층 주식회사 비케이알 <span></span> 전화주문
+              1599-0505
+            </BKRP>
+            <BKRP>
+              <a>사업자 등록번호 101-86-76277</a>
+              <span></span> (주)BKR 대표이사 문영주, 이동형
+            </BKRP>
+            <BKRP>Copyright 2019 BKR Co., Ltd. All right Reserved</BKRP>
+            <Sns>
+              <AiFillFacebook style={{ fontSize: '30px' }}>페이스북</AiFillFacebook>
+              <BsInstagram style={{ fontSize: '28px' }}>인스타그램</BsInstagram>
+            </Sns>
+          </div>
+        </FooterContainer>
+      </TFooter>
+    </>
   );
 }
 
@@ -101,7 +105,7 @@ const MenuA = styled.a`
   color: #bba391;
 `;
 
-const Footer = styled.div`
+const TFooter = styled.div`
   height: 272px;
   font-size: 0.875rem;
   color: #818181;

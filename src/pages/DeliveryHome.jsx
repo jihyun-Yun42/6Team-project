@@ -19,11 +19,6 @@ function DeliveryHome() {
   const { menuData, getMenuIsLoading } = useGetMenu();
   const [category, setCategory] = useState('신제품');
 
-  const onClickCategory = (e) => {
-    setCategory(e.target.value);
-  };
-  console.log(category);
-
   // if (!menuData || getMenuIsLoading) return <div>로딩중...</div>;
 
   return (
