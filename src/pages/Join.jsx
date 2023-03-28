@@ -4,9 +4,7 @@ import styled from "styled-components";
 import Button from "../components/Button";
 import HeaderDelivery from "../components/HeaderDelivery";
 import NavDelivery from "../components/NavDelivery";
-import NaverLogin from "../components/NaverLogin";
 import TotalFooter from "../components/TotalFooter";
-import { KAKAO_AUTH_URL } from "../components/KakaoLogin";
 import { FaKey, FaLock } from "react-icons/fa";
 function Join() {
   const nav = useNavigate();
@@ -49,11 +47,6 @@ function Join() {
                 <FaLock />
                 <span>간편 회원가입</span>
               </TitleLogin>
-              <NaverLogin />
-              <a href={KAKAO_AUTH_URL}>
-                <span>카카오계정 로그인</span>
-              </a>
-              <div>애플</div>
             </LoginSimple>
           </LoginUi>
         </JoinContainer>
