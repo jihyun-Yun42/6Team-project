@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { apis } from '../axios/api';
 import Nav from '../components/Nav';
+import NavDelivery from '../components/NavDelivery';
 
 const StoreSearch = () => {
   const { kakao } = window;
@@ -174,11 +175,7 @@ const StoreSearch = () => {
     <>
       <Nav />
       <div style={{ height: '130px' }} />
-      <NavSubbar>
-        <SubTextBox>
-          <div>HOME {'>'} 매장찾기</div>
-        </SubTextBox>
-      </NavSubbar>
+      <NavDelivery page="매장찾기" />
       <Map id="map" />
       <StoreSearchBox>
         <Store>
@@ -236,26 +233,6 @@ const Map = styled.div`
   z-index: 1;
 `;
 
-const NavSubbar = styled.div`
-  height: 50px;
-  width: 100%;
-  background-color: black;
-  color: white;
-
-  padding-left: 5%;
-  position: relative;
-  z-index: 3;
-`;
-
-const SubTextBox = styled.div`
-  max-width: 1200px;
-  height: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-`;
-
 const Store = styled.div`
   margin: 20px;
   display: flex;
@@ -268,7 +245,7 @@ const StoreSearchBox = styled.div`
   background-color: white;
   position: absolute;
   height: 640px;
-  top: 19%;
+  top: 20%;
   right: 0;
   z-index: 2;
 `;
