@@ -57,10 +57,10 @@ function Nav() {
               </MenuNavList>
             </ul>
           </MenuTitle>
-          <Button brown onClick={() => navi('/login')}>
-            로그인
+          <Button onClick={() => navi('/login')}>로그인</Button>
+          <Button bgcolor="red" onClick={() => navi('/deliveryHome')}>
+            딜리버리 주문
           </Button>
-          <Button onClick={() => navi('/deliveryHome')}>딜리버리 주문</Button>
         </ListTotalTitle>
       </NavContainer>
     </NavMenu>

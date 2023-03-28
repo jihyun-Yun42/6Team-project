@@ -14,7 +14,8 @@ import {
   ModalTrigger,
 } from '../components/Modal';
 import { useGetMenu } from '../hooks/Menu/useGetMenu';
-
+import Input, { FileLabel } from '../components/Input';
+import { Test } from '../components/Test';
 function DeliveryHome() {
   const { menuData, getMenuIsLoading } = useGetMenu();
   const [category, setCategory] = useState('NEW');
@@ -60,15 +61,9 @@ function DeliveryHome() {
           {menuData.map((item) => item.category === category && <Card item={item} />)}
         </Tab_cont>
       </MenuArea>
-      <ModalRoot>
-        <ModalTrigger>
-          <button>메뉴추가하기</button>
-          <ModalBackground />
-        </ModalTrigger>
-        <ModalContent>
-          <AddMenu />
-        </ModalContent>
-      </ModalRoot>
+      <AddMenu>
+        <button>메뉴</button>
+      </AddMenu>
       <OrderCoution />
       <TotalFooter />
     </>
