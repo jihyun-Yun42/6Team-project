@@ -12,16 +12,18 @@ import {
   ModalContent,
   ModalRoot,
   ModalTrigger,
-} from "../components/Modal";
-import { useGetMenu } from "../hooks/Menu/useGetMenu";
+} from '../components/Modal';
+import { useGetMenu } from '../hooks/Menu/useGetMenu';
+
 function DeliveryHome() {
   const { menuData, getMenuIsLoading } = useGetMenu();
-  const [category, setCategory] = useState("신제품");
+  const [category, setCategory] = useState('NEW');
+
   const onClickCategory = (e) => {
     setCategory(e.target.value);
   };
-  console.log(category);
-  // if (!menuData || getMenuIsLoading) return <div>로딩중...</div>;
+  if (!menuData || getMenuIsLoading) return <div>로딩중...</div>;
+
   return (
     <>
       <HeaderDelivery name={"딜리버리"} />
@@ -29,11 +31,15 @@ function DeliveryHome() {
       <NavDelivery />
       <MenuArea>
         <MenuList>
-          <span style={{ color: "black", fontSize: "40px" }}>메뉴</span>
+          <span style={{ color: 'black', fontSize: '40px' }}>메뉴</span>
           <MenuBar>
-            <MenuBtn value="NEW" onClick={onClickCategory}>
+            <button
+              value="NEW"
+              onClick={onClickCategory}
+              className={`menuBtn ${category === 'NEW' ? 'btnselect' : ''}`}
+            >
               신제품(NEW)
-            </MenuBtn>
+            </button>
             <MenuBtn value="premium" onClick={onClickCategory}>
               프리미엄
             </MenuBtn>
@@ -55,7 +61,7 @@ function DeliveryHome() {
           </MenuBar>
         </MenuList>
         <Tab_cont>
-          {/* {menuData.map((item) => item.category === category && <Card item={item} />)} */}
+          {menuData.map((item) => item.category === category && <Card item={item} />)}
         </Tab_cont>
       </MenuArea>
       <ModalRoot>
@@ -75,7 +81,7 @@ function DeliveryHome() {
 export default DeliveryHome;
 const Tab_cont = styled.div`
   /* background-color: #aad3d3; */
-  /* height: 522px; */
+  min-height: 522px;
   display: flex;
   gap: 3%;
   flex-wrap: wrap;

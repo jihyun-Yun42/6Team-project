@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { BsInstagram } from "react-icons/bs";
-import { AiFillFacebook } from "react-icons/ai";
-import Footer from "./Footer";
+import React from 'react';
+import styled from 'styled-components';
+import { BsInstagram } from 'react-icons/bs';
+import { AiFillFacebook } from 'react-icons/ai';
+import Footer from './Footer';
 function TotalFooter({ main }) {
   return (
     <>
@@ -41,8 +41,8 @@ function TotalFooter({ main }) {
               <img src="/assets/BKRLogo.png" />
             </BKRLogo>
             <BKRP>
-              서울 종로구 삼봉로 71 G 타워 2층 주식회사 비케이알 <span></span>{" "}
-              전화주문 1599-0505
+              서울 종로구 삼봉로 71 G 타워 2층 주식회사 비케이알 <span></span> 전화주문
+              1599-0505
             </BKRP>
             <BKRP>
               <a>사업자 등록번호 101-86-76277</a>
@@ -50,10 +50,8 @@ function TotalFooter({ main }) {
             </BKRP>
             <BKRP>Copyright 2019 BKR Co., Ltd. All right Reserved</BKRP>
             <Sns>
-              <AiFillFacebook style={{ fontSize: "30px" }}>
-                페이스북
-              </AiFillFacebook>
-              <BsInstagram style={{ fontSize: "28px" }}>인스타그램</BsInstagram>
+              <AiFillFacebook style={{ fontSize: '30px' }}>페이스북</AiFillFacebook>
+              <BsInstagram style={{ fontSize: '28px' }}>인스타그램</BsInstagram>
             </Sns>
           </div>
         </FooterContainer>

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
+import { FiX } from 'react-icons/fi';
 
 const Context = createContext();
 
@@ -34,9 +35,31 @@ const Modalonoff = styled.div`
 `;
 
 export const ModalContent = ({ children }) => {
-  const { open } = useContext(Context);
-  return open && <ContentBox>{children}</ContentBox>;
+  const { open, setOpen } = useContext(Context);
+  return (
+    open && (
+      <ContentBox>
+        <BtnCard
+          onClick={() => {
+            setOpen((pre) => !pre);
+          }}
+        >
+          <FiX />
+        </BtnCard>
+        {children}
+      </ContentBox>
+    )
+  );
 };
+const BtnCard = styled.button`
+  position: absolute;
+  border: 0;
+  top: 8px;
+  right: 8px;
+  background-color: transparent;
+  font-size: 30px;
+  cursor: pointer;
+`;
 
 const ContentBox = styled.div`
   width: 400px;
@@ -49,6 +72,6 @@ const ContentBox = styled.div`
   right: 50%;
   transform: translate(-50%, 50%);
   padding: 5%;
-  border-radius: 50px;
+  border-radius: 30px;
   box-sizing: border-box;
 `;

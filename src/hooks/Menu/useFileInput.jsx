@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
-export const useFileInput = ({ initialState, mutate, id }) => {
+export const useFileInput = ({ initialState }) => {
   const [inputValue, setInputValue] = useState(initialState);
 
+  console.log(inputValue);
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     name === 'price'
       ? setInputValue({
           ...inputValue,
-          price: value
+          [name]: value
             .replace(/[^0-9]/g, '')
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
@@ -20,26 +21,5 @@ export const useFileInput = ({ initialState, mutate, id }) => {
     setInputValue({ ...inputValue, file: e.target.files[0] });
   };
 
-  const submitFormHandler = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('title', inputValue.title);
-    formData.append('category', inputValue.category);
-    formData.append('price', inputValue.price);
-    formData.append('file', inputValue.file);
-
-    mutate(
-      { formData, id },
-      {
-        onSuccess: () =>
-          setInputValue({
-            title: '',
-            category: '',
-            price: '',
-            file: null,
-          }),
-      }
-    );
-  };
-  return [inputValue, onChangeHandler, fileInputHandler, submitFormHandler];
+  return [inputValue, onChangeHandler, fileInputHandler];
 };
