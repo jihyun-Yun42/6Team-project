@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AddMenu } from '../components/Menu/AddMenu';
 import BetweenNav from '../components/BetweenNav';
 import HeaderDelivery from '../components/HeaderDelivery';
 import NavDelivery from '../components/NavDelivery';
 import OrderCoution from '../components/OrderCoution';
-import { cookies } from '../shared/cookies';
-import { useQuery } from '@tanstack/react-query';
-import { apis } from '../axios/api';
-import { keys } from '../utils/createQueryKey';
 import TotalFooter from '../components/TotalFooter';
 import { Card } from '../components/Card';
 import {
@@ -18,23 +13,18 @@ import {
   ModalRoot,
   ModalTrigger,
 } from '../components/Modal';
+import { useGetMenu } from '../hooks/Menu/useGetMenu';
 
 function DeliveryHome() {
+  const { menuData, getMenuIsLoading } = useGetMenu();
   const [category, setCategory] = useState('신제품');
 
   const onClickCategory = (e) => {
     setCategory(e.target.value);
   };
   console.log(category);
-  const { data, isLoading } = useQuery({
-    queryKey: keys.GET_MENU,
-    queryFn: async () => {
-      const data = await apis.get('/api/menus/list');
-      return data.data;
-    },
-  });
-  console.log(data);
-  if (!data || isLoading) return <div>로딩중...</div>;
+
+  if (!menuData || getMenuIsLoading) return <div>로딩중...</div>;
 
   return (
     <>
@@ -69,7 +59,7 @@ function DeliveryHome() {
           </MenuBar>
         </MenuList>
         <Tab_cont>
-          {data.map((item) => item.category === category && <Card item={item} />)}
+          {menuData.map((item) => item.category === category && <Card item={item} />)}
         </Tab_cont>
       </MenuArea>
       <ModalRoot>

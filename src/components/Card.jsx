@@ -3,9 +3,14 @@ import styled from 'styled-components';
 import { FiX } from 'react-icons/fi';
 import { RxUpdate } from 'react-icons/rx';
 import { ModalBackground, ModalContent, ModalRoot, ModalTrigger } from './Modal';
+import { apis } from '../axios/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { keys } from '../utils/createQueryKey';
+import { UpdateMenu } from './Menu/UpdateMenu';
+import { useDeleteMenu } from '../hooks/Menu/useDeleteMenu';
 
 export const Card = ({ item }) => {
-  console.log(item);
+  const { deleteMenu } = useDeleteMenu();
   return (
     <CardBox key={item.id}>
       <ModalRoot>
@@ -16,9 +21,16 @@ export const Card = ({ item }) => {
             <RxUpdate />
           </BtnCard>
         </ModalTrigger>
-        <ModalContent></ModalContent>
+        <ModalContent>
+          <UpdateMenu item={item} />
+        </ModalContent>
       </ModalRoot>
-      <BtnCard style={{ right: 0 }}>
+      <BtnCard
+        style={{ right: 0 }}
+        onClick={() => {
+          deleteMenu(item.id);
+        }}
+      >
         <FiX />
       </BtnCard>
       <CardImg>사진넣을공간</CardImg>
