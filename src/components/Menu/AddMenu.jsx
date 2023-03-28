@@ -20,12 +20,12 @@ export const AddMenu = () => {
   });
 
   const submitFormHandler = (e) => {
-    const formData = new FormData();
     e.preventDefault();
-    formData.append('title', inputValue.title);
-    formData.append('category', inputValue.category);
-    formData.append('price', inputValue.price);
-    formData.append('file', inputValue.file);
+    const formData = new FormData();
+    formData.append('title', inputValue?.title);
+    formData.append('category', inputValue?.category);
+    formData.append('price', inputValue?.price);
+    formData.append('file', inputValue?.file);
     addMenu(formData);
   };
 

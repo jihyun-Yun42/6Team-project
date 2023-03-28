@@ -45,12 +45,11 @@ const BetweenNavWrap = styled.div`
 `;
 
 const BetweenNavContainer = styled.div`
-  max-width: 1184px;
+  min-width: 1184px;
   margin: 0 auto;
-  /* padding: 0 20px; */
   display: flex;
   align-items: center;
-  /* gap: 20%; */
+  justify-content: space-around;
 `;
 
 const Order = styled.div`
@@ -62,9 +61,4 @@ const Order = styled.div`
 const NavTitle = styled.div`
   font-size: 18px;
   color: white;
-`;
-const Cart = styled.div`
-  background-color: green;
-  opacity: 20%;
-  width: 500px;
 `;
