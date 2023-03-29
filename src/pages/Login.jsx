@@ -1,5 +1,5 @@
 import jwtDecode from "jwt-decode";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { apis } from "../axios/api";
@@ -26,7 +26,7 @@ function Login() {
       return { ...old, [name]: value };
     });
   };
-  console.log(user);
+
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
@@ -38,9 +38,16 @@ function Login() {
       alert("로그인성공");
       navi("/deliveryHome");
     } catch (event) {
-      console.log("ErrorEvent", event);
+      alert("ErrorEvent", event);
     }
   };
+
+  useEffect(() => {
+    const token = cookies.get("token");
+    if (token) {
+      navi("/deliveryHome");
+    }
+  }, []);
 
   return (
     <>
