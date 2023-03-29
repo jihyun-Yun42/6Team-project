@@ -45,7 +45,7 @@ const ContentBox = styled.div`
   background-color: white;
   position: fixed;
   top: 0;
-  z-index: 51;
+  z-index: 53;
   left: 50%;
   right: 50%;
   transform: translate(-50%, 50%);

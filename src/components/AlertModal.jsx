@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
+import { FiX } from 'react-icons/fi';
 
 const AlertContext = createContext();
 
@@ -38,6 +39,24 @@ const ContentBox = styled.div`
   border-radius: 30px;
   box-sizing: border-box;
   font-size: 30px;
+`;
+
+export const AlertModalCloseBtn = ({ children, ...rest }) => {
+  const { setOpen } = useContext(AlertContext);
+  return (
+    <BtnCard onClick={() => setOpen((pre) => !pre)} {...rest}>
+      <FiX />
+    </BtnCard>
+  );
+};
+const BtnCard = styled.button`
+  position: absolute;
+  border: 0;
+  top: 8px;
+  right: 8px;
+  background-color: transparent;
+  font-size: 30px;
+  cursor: pointer;
 `;
 
 export const AlertModalAction = ({ children, ...rest }) => {

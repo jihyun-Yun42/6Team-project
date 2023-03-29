@@ -119,7 +119,7 @@ export const UpdateMenu = ({ item, children }) => {
                   </ModalTrigger>
                   <AlertModalTrigger>
                     <Button bgcolor="red" onClick={() => reset()}>
-                      취소
+                      돌아가기
                     </Button>
                   </AlertModalTrigger>
                 </>
