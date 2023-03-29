@@ -25,7 +25,7 @@ function Signup() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const result = await apis.post("/api/sigup", signupUser);
+      const result = await apis.post("/api/signup", signupUser);
     } catch (e) {
       console.log("error", e);
     }
