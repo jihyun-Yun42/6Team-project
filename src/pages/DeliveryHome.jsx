@@ -7,19 +7,11 @@ import NavDelivery from '../components/NavDelivery';
 import OrderCoution from '../components/OrderCoution';
 import TotalFooter from '../components/TotalFooter';
 import { Card } from '../components/Card';
-import {
-  ModalBackground,
-  ModalContent,
-  ModalRoot,
-  ModalTrigger,
-} from '../components/Modal';
 import { useGetMenu } from '../hooks/Menu/useGetMenu';
-import Input, { FileLabel } from '../components/Input';
-import { Test } from '../components/Test';
 import { cookies } from '../shared/cookies';
+import Button from '../components/Button';
 function DeliveryHome() {
   const ADMIN = cookies.get('userId');
-  console.log(ADMIN);
   const { menuData, getMenuIsLoading } = useGetMenu();
   const [category, setCategory] = useState('NEW');
 
@@ -60,15 +52,17 @@ function DeliveryHome() {
             </MenuBtn>
           </MenuBar>
         </MenuList>
+        {ADMIN && (
+          <AddMenu>
+            <Button>메뉴추가</Button>
+          </AddMenu>
+        )}
         <Tab_cont>
-          {menuData.map((item) => item.category === category && <Card item={item} />)}
+          {menuData.map(
+            (item) => item.category === category && <Card key={item.id} item={item} />
+          )}
         </Tab_cont>
       </MenuArea>
-      {ADMIN && (
-        <AddMenu>
-          <button>메뉴</button>
-        </AddMenu>
-      )}
 
       <OrderCoution />
       <TotalFooter />
@@ -114,4 +108,14 @@ const MenuBtn = styled.button`
     color: #e22219;
     border-bottom: 3.5px solid #e22219;
   }
+`;
+
+const CardBox = styled.div`
+  position: relative;
+  width: 240px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 `;
