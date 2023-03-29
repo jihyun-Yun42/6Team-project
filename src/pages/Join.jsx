@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import Button from "../components/Button";
@@ -10,10 +10,11 @@ import { KAKAO_AUTH_URL } from "../components/KakaoLogin";
 import { FaKey, FaLock } from "react-icons/fa";
 import Input, { FileForm } from "../components/Input";
 import { apis } from "../axios/api";
+import { cookies } from "../shared/cookies";
 
 function Join() {
   const nav = useNavigate();
-
+  const inputRef = useRef();
   const [signupUser, setSignupUser] = useState({
     username: "",
     email: "",
@@ -21,7 +22,6 @@ function Join() {
     nickname: "",
   });
 
-  console.log("signupUser", signupUser);
   const changeInputHandler = (event) => {
     const { value, name } = event.target;
     setSignupUser((old) => {
@@ -48,6 +48,14 @@ function Join() {
     pwCheck.test(signupUser.password) &&
     nicknameCheck.test(signupUser.nickname) &&
     signupUser.email;
+
+  useEffect(() => {
+    inputRef.current.focus();
+    const token = cookies.get("token");
+    if (token) {
+      nav("/deliveryHome");
+    }
+  }, []);
   return (
     <>
       <HeaderDelivery name="회원가입" />
@@ -84,6 +92,7 @@ function Join() {
                     name="email"
                     onChange={changeInputHandler}
                     placeholder="이메일을 입력해주세요"
+                    inputRef={inputRef}
                   />
                 </SignupBox>
                 <SignupBox>
