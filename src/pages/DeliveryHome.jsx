@@ -18,7 +18,6 @@ import Input, { FileLabel } from "../components/Input";
 import { cookies } from "../shared/cookies";
 function DeliveryHome() {
   const ADMIN = cookies.get("userId");
-  console.log(ADMIN);
   const { menuData, getMenuIsLoading } = useGetMenu();
   const [category, setCategory] = useState("NEW");
 
