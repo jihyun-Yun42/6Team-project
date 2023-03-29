@@ -3,16 +3,12 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { cookies } from "../shared/cookies";
 import Spinner from "../assets/spinner.gif";
-import { apis } from "../axios/api";
 import axios from "axios";
-import Cookies from "universal-cookie";
 import jwtDecode from "jwt-decode";
-
 
 function OAuthKakao() {
   const nav = useNavigate();
   const code = new URL(window.location.href).searchParams.get("code");
-  console.log("code", code);
   const kakaoLogin = async () => {
     try {
       const response = await axios.get(
@@ -25,6 +21,7 @@ function OAuthKakao() {
         path: "/",
       });
       nav("/deliveryHome");
+      window.location.reload();
     } catch (e) {
       console.log("error", e);
       alert(e);
