@@ -10,11 +10,11 @@ import {
   ModalTrigger,
 } from '../../components/Modal';
 import {
-  AlertModalCloseBtn,
   AlertModalContent,
   AlertModalRoot,
   AlertModalTrigger,
 } from '../../components/AlertModal';
+import { Flex } from '../../components/Flex';
 
 export const AddMenu = ({ children }) => {
   const { addMenu, addStatue, reset } = useAddMenu();
@@ -91,37 +91,41 @@ export const AddMenu = ({ children }) => {
               <Button type="button">제출하기</Button>
             </AlertModalTrigger>
             <AlertModalContent>
-              <AlertModalCloseBtn />
+              <ModalCloseBtn onClick={() => reset()} />
               {addStatue === 'idle' ? (
                 <>
                   <div>정말 작성하시겠습니까?</div>
-                  <Button type="button" onClick={submitFormHandler} bgcolor="red">
-                    제출
-                  </Button>
-                  <AlertModalTrigger>
-                    <Button>취소</Button>
-                  </AlertModalTrigger>
+                  <Flex gap={10} ai="flex-start" style={{ marginTop: '30px' }}>
+                    <Button type="button" onClick={submitFormHandler} bgcolor="red">
+                      제출
+                    </Button>
+                    <AlertModalTrigger>
+                      <Button>취소</Button>
+                    </AlertModalTrigger>
+                  </Flex>
                 </>
               ) : addStatue === 'loading' ? (
                 <>로딩중...</>
               ) : addStatue === 'success' ? (
-                <>
+                <Flex gap={40} fd="column" ai="flex-start">
                   <div>작성이 완료되었습니다.</div>
                   <ModalTrigger>
-                    <Button>완료</Button>
+                    <Button onClick={() => reset()}>완료</Button>
                   </ModalTrigger>
-                </>
+                </Flex>
               ) : (
                 <>
                   <div>작성에 실패하였습니다.</div>
-                  <ModalTrigger>
-                    <Button>완료</Button>
-                  </ModalTrigger>
-                  <AlertModalTrigger>
-                    <Button bgcolor="red" onClick={() => reset()}>
-                      돌아가기
-                    </Button>
-                  </AlertModalTrigger>
+                  <Flex gap={10} ai="flex-start" style={{ marginTop: '30px' }}>
+                    <ModalTrigger>
+                      <Button onClick={() => reset()}>완료</Button>
+                    </ModalTrigger>
+                    <AlertModalTrigger>
+                      <Button bgcolor="red" onClick={() => reset()}>
+                        돌아가기
+                      </Button>
+                    </AlertModalTrigger>
+                  </Flex>
                 </>
               )}
             </AlertModalContent>

@@ -44,7 +44,7 @@ const Tab_cont = styled.div`
   flex-wrap: wrap;
   padding: 4%;
 `;
-const MenuArea = styled.div`
+const MenuAreaDiv = styled.div`
   margin: 50px auto 0 auto;
   max-width: 1184px;
 `;
@@ -105,7 +105,7 @@ export {
   CardBurgerPrice,
   BtnCard,
   Tab_cont,
-  MenuArea,
+  MenuAreaDiv,
   MenuList,
   MenuBtn,
   BetweenNavWrap,
