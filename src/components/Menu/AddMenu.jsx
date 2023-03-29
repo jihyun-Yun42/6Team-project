@@ -19,17 +19,11 @@ export const AddMenu = ({ children }) => {
     file: null,
   };
 
-  const [inputValue, onChangeHandler, fileInputHandler] = useFileInput(newMenu);
-
-  const submitFormHandler = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('title', inputValue.title);
-    formData.append('category', inputValue.category);
-    formData.append('price', inputValue.price);
-    formData.append('file', inputValue.file);
-    addMenu(formData);
-  };
+  const [inputValue, onChangeHandler, fileInputHandler, submitFormHandler] = useFileInput(
+    newMenu,
+    addMenu,
+    null
+  );
 
   return (
     <ModalRoot>
@@ -87,7 +81,7 @@ export const AddMenu = ({ children }) => {
             <option value="dog">독퍼</option>
           </select>
           {/* <ModalCloseBtn type="submit"> */}
-          <button type="submit">제출</button>
+          <Button type="submit">제출</Button>
           {/* </ModalCloseBtn> */}
         </FileForm>
       </ModalContent>

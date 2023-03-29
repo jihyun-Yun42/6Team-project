@@ -9,7 +9,7 @@ export const useAddMenu = () => {
   const { mutate: addMenu, isLoading: addMenuIsLoding } = useMutation({
     mutationFn: async (payload) => {
       console.log(payload);
-      const { data } = await api.post('/api/upload', payload, {
+      const { data } = await api.post('/api/upload', payload.formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -18,9 +18,6 @@ export const useAddMenu = () => {
     },
     onSuccess: () => {
       queryClinet.invalidateQueries({ queryKey: keys.GET_MENU }); // GET 요청을 다시함
-    },
-    onError: (error) => {
-      console.log(error);
     },
   });
   return { addMenu, addMenuIsLoding };

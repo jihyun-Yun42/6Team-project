@@ -1,5 +1,6 @@
 import { useFileInput } from '../../hooks/Menu/useFileInput';
 import { useUpdateMenu } from '../../hooks/Menu/useUpdateMenu';
+import Button from '../Button';
 import Input, { FileForm, FileLabel } from '../Input';
 import { ModalRoot, ModalTrigger } from '../Modal';
 
@@ -14,39 +15,12 @@ export const UpdateMenu = ({ item }) => {
     file: null,
   };
 
-  const [inputValue, onChangeHandler, fileInputHandler] = useFileInput(editMenu);
+  const [inputValue, onChangeHandler, fileInputHandler, submitFormHandler] = useFileInput(
+    editMenu,
+    updateMenu,
+    item.id
+  );
 
-  const submitFormHandler = (e) => {
-    e.preventDefault();
-    const requestDto = new Blob(
-      [
-        JSON.stringify({
-          title: inputValue.title,
-          category: inputValue.category,
-          price: inputValue.price,
-        }),
-      ],
-      {
-        type: 'application/json',
-      }
-    );
-    const formData = new FormData();
-    // formData.append('title', inputValue.title);
-    // formData.append('category', inputValue.category);
-    // formData.append('price', inputValue.price);
-    formData.append('file', inputValue.file);
-    formData.append('requestDto', requestDto);
-    console.log('key : file', formData.get('file'));
-    console.log('key : requestDto', formData.get('requestDto'));
-    // updateMenu({
-    //   formData,
-    //   title: inputValue.title,
-    //   category: inputValue.category,
-    //   price: inputValue.price,
-    //   id: inputValue.id,
-    // });
-    updateMenu({ formData, id: editMenu.id });
-  };
   return (
     <FileForm onSubmit={submitFormHandler}>
       <FileLabel>
@@ -98,7 +72,7 @@ export const UpdateMenu = ({ item }) => {
       </select>
       <ModalRoot>
         {/* <ModalTrigger> */}
-        <button type="submit">제출</button>
+        <Button type="submit">제출</Button>
         {/* </ModalTrigger> */}
       </ModalRoot>
     </FileForm>

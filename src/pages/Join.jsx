@@ -1,25 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router";
-import styled from "styled-components";
-import Button from "../components/Button";
-import HeaderDelivery from "../components/HeaderDelivery";
-import NavDelivery from "../components/NavDelivery";
-import NaverLogin from "../components/NaverLogin";
-import TotalFooter from "../components/TotalFooter";
-import { KAKAO_AUTH_URL } from "../components/KakaoLogin";
-import { FaKey, FaLock } from "react-icons/fa";
-import Input, { FileForm } from "../components/Input";
-import { apis } from "../axios/api";
-import { cookies } from "../shared/cookies";
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
+import styled from 'styled-components';
+import Button from '../components/Button';
+import HeaderDelivery from '../components/HeaderDelivery';
+import NavDelivery from '../components/NavDelivery';
+import NaverLogin from '../components/NaverLogin';
+import TotalFooter from '../components/TotalFooter';
+import { KAKAO_AUTH_URL } from '../components/KakaoLogin';
+import { FaKey, FaLock } from 'react-icons/fa';
+import Input, { FileForm } from '../components/Input';
+import { apis } from '../axios/api';
+import { cookies } from '../shared/cookies';
 
 function Join() {
   const nav = useNavigate();
   const inputRef = useRef();
   const [signupUser, setSignupUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-    nickname: "",
+    username: '',
+    email: '',
+    password: '',
+    nickname: '',
   });
 
   const changeInputHandler = (event) => {
@@ -32,14 +32,13 @@ function Join() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const result = await apis.post("/api/sigup", signupUser);
+      const result = await apis.post('/api/sigup', signupUser);
     } catch (e) {
-      console.log("error", e);
+      console.log('error', e);
     }
   };
 
-  const pwCheck =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/;
+  const pwCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/;
   const nicknameCheck = /^[a-zA-Z가-힣0-9]{2,16}$/;
   const usernameCheck = /^[a-z0-9]{4,10}$/;
 
@@ -51,9 +50,9 @@ function Join() {
 
   useEffect(() => {
     inputRef.current.focus();
-    const token = cookies.get("token");
+    const token = cookies.get('token');
     if (token) {
-      nav("/deliveryHome");
+      nav('/deliveryHome');
     }
   }, []);
   return (
@@ -66,13 +65,10 @@ function Join() {
             <Pagetit02>환영합니다!</Pagetit02>
             <Txtwelcome>
               <p>
-                이메일 주소 혹은 sns 계정으로 간편하게{" "}
-                <StrongRed>회원가입</StrongRed>
+                이메일 주소 혹은 sns 계정으로 간편하게 <StrongRed>회원가입</StrongRed>
                 하세요!
               </p>
-              <Txtinfo>
-                버거킹 서비스는 만 14세 이상부터 이용 하실 수 있습니다.
-              </Txtinfo>
+              <Txtinfo>버거킹 서비스는 만 14세 이상부터 이용 하실 수 있습니다.</Txtinfo>
             </Txtwelcome>
           </WelcomeBox>
           <LoginUi>
@@ -110,8 +106,7 @@ function Join() {
                         <Pass>사용 가능합니다</Pass>
                       ) : (
                         <Rejects>
-                          4~10글자 알파벳 소문자(a~z), 숫자(0~9)만 입력
-                          가능합니다.
+                          4~10글자 알파벳 소문자(a~z), 숫자(0~9)만 입력 가능합니다.
                         </Rejects>
                       )}
                     </div>
@@ -132,8 +127,7 @@ function Join() {
                         <Pass>사용 가능합니다</Pass>
                       ) : (
                         <Rejects>
-                          8~15글자, 글자 1개, 숫자 1개, 특수문자 1개 꼭
-                          입력해야합니다.
+                          8~15글자, 글자 1개, 숫자 1개, 특수문자 1개 꼭 입력해야합니다.
                         </Rejects>
                       )}
                     </div>
@@ -154,15 +148,14 @@ function Join() {
                         <Pass>사용 가능합니다</Pass>
                       ) : (
                         <Rejects>
-                          2자 이상 16자 이하, 영어 또는 숫자 또는 한글로
-                          구성되야 합니다
+                          2자 이상 16자 이하, 영어 또는 숫자 또는 한글로 구성되야 합니다
                         </Rejects>
                       )}
                     </div>
                   </div>
                 </SignupBox>
                 {showbutton ? (
-                  <div style={{ marginTop: "20px" }}>
+                  <div style={{ marginTop: '20px' }}>
                     <Button bgcolor="red" type="submit" boxstyle="box">
                       회원가입
                     </Button>

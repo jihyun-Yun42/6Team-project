@@ -3,9 +3,6 @@ import styled from 'styled-components';
 import { FiX } from 'react-icons/fi';
 import { RxUpdate } from 'react-icons/rx';
 import { ModalBackground, ModalContent, ModalRoot, ModalTrigger } from './Modal';
-import { apis } from '../axios/api';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { keys } from '../utils/createQueryKey';
 import { UpdateMenu } from './Menu/UpdateMenu';
 import { useDeleteMenu } from '../hooks/Menu/useDeleteMenu';
 import { cookies } from '../shared/cookies';
@@ -13,7 +10,7 @@ import { cookies } from '../shared/cookies';
 export const Card = ({ item }) => {
   const ADMIN = cookies.get('userId');
   const { deleteMenu } = useDeleteMenu();
-  console.log(item.url);
+
   return (
     <CardBox key={item.id}>
       <ModalRoot>
@@ -40,7 +37,7 @@ export const Card = ({ item }) => {
         </BtnCard>
       )}
 
-      <CardImg style={{ backgroundImage: `url(${item.url})` }} />
+      <CardImg style={{ backgroundImage: `url(${item.fileUrl})` }} />
       <CardBurgerName>{item.title}</CardBurgerName>
       <CardBurgerPrice>₩{item.price}~</CardBurgerPrice>
     </CardBox>

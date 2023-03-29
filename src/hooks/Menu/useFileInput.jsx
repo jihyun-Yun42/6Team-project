@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const useFileInput = (initialState) => {
+export const useFileInput = (initialState, mutate, id) => {
   const [inputValue, setInputValue] = useState(initialState);
 
   const onChangeHandler = (e) => {
@@ -19,6 +19,32 @@ export const useFileInput = (initialState) => {
   const fileInputHandler = (e) => {
     setInputValue({ ...inputValue, file: e.target.files[0] });
   };
+  const submitFormHandler = (e) => {
+    e.preventDefault();
+    const requestDto = new Blob(
+      [
+        JSON.stringify({
+          title: inputValue.title,
+          category: inputValue.category,
+          price: inputValue.price,
+          file: inputValue.file,
+        }),
+      ],
+      {
+        type: 'application/json',
+      }
+    );
+    const formData = new FormData();
 
-  return [inputValue, onChangeHandler, fileInputHandler];
+    if (inputValue.file == null) {
+      const emptyImageBlob = new Blob([], { type: 'image/jpg' });
+      formData.append('file', emptyImageBlob, 'image');
+      formData.append('requestDto', requestDto);
+      return mutate({ formData, id });
+    }
+    formData.append('file', inputValue.file);
+    formData.append('requestDto', requestDto);
+    mutate({ formData, id });
+  };
+  return [inputValue, onChangeHandler, fileInputHandler, submitFormHandler];
 };

@@ -29,7 +29,6 @@ function Login() {
 
   const inputRef = useRef();
 
-  console.log(inputRef.current);
   useEffect(() => {
     inputRef.current.focus();
   }, []);
@@ -45,14 +44,14 @@ function Login() {
       alert('로그인성공');
       navi('/deliveryHome');
     } catch (event) {
-      alert("ErrorEvent", event);
+      alert('ErrorEvent', event);
     }
   };
 
   useEffect(() => {
-    const token = cookies.get("token");
+    const token = cookies.get('token');
     if (token) {
-      navi("/deliveryHome");
+      navi('/deliveryHome');
     }
   }, []);
 
@@ -61,12 +60,16 @@ function Login() {
       <HeaderDelivery />
       <NavDelivery margintop={'168px'} />
       <LoginContainer>
-        <LoinTitle color={'#e22219'}>YOUR WAY</LoinTitle>
-        <LoinTitle>어서오세요! 버거킹입니다.</LoinTitle>
+        <div style={{ paddingBottom: '30px' }}>
+          <LoinTitle color={'#e22219'}>YOUR WAY</LoinTitle>
+          <LoinTitle>어서오세요! 버거킹입니다.</LoinTitle>
+        </div>
         <LoginUI>
           <LoginArea>
             <TitleLogin>
-              <FaKey />
+              <Circle>
+                <FaKey />
+              </Circle>
               <span>일반로그인</span>
             </TitleLogin>
             <LogInForm onSubmit={submitHandler}>
@@ -101,21 +104,25 @@ function Login() {
                 </Button>
               </Btns>
               <div>
-                <span>아이디찾기</span>
+                <span style={{ marginRight: '20px' }}>아이디찾기</span>
                 <span>비밀번호찾기</span>
               </div>
             </LogInForm>
           </LoginArea>
           <OAuthArea>
-            <TitleLogin>
-              <FaLock />
-              <span>간편 로그인</span>
-            </TitleLogin>
             <OauthLogin>
-              <a href={KAKAO_AUTH_URL}>
-                <KakaoLogin src={KakaoLogo} />
-              </a>
-              <NaverLogin />
+              <TitleLogin>
+                <Circle>
+                  <FaLock />
+                </Circle>
+                <span>간편 로그인</span>
+              </TitleLogin>
+              <SocialLogin>
+                <a href={KAKAO_AUTH_URL}>
+                  <KakaoLogin src={KakaoLogo} />
+                </a>
+                <NaverLogin />
+              </SocialLogin>
             </OauthLogin>
           </OAuthArea>
         </LoginUI>
@@ -128,15 +135,18 @@ function Login() {
 export default Login;
 
 const KakaoLogin = styled.img`
-  width: 250px;
+  width: 270px;
+  /* height: 58px; */
+  border-radius: 12px;
 `;
 
 const OauthLogin = styled.div`
-  height: 300px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  /* align-items: center; */
+  padding: 5%;
 `;
 
 const Btns = styled.div`
@@ -148,11 +158,15 @@ const Btns = styled.div`
 const TitleLogin = styled.div`
   display: flex;
   gap: 10px;
-  margin-top: 0;
-  font-size: 30px;
-  padding: 10px;
+  font-size: 25px;
 `;
 
+const SocialLogin = styled.div`
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
 const LogInForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -187,4 +201,16 @@ const LoginContainer = styled.div`
   max-width: 1184px;
   background-color: #ffffff;
   padding: 75px 25px 0px;
+`;
+
+const Circle = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  padding: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: black;
 `;

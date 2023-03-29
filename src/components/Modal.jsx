@@ -36,7 +36,6 @@ const Modalonoff = styled.div`
 
 export const ModalContent = ({ children }) => {
   const { open, setOpen } = useContext(Context);
-  console.log(open);
   return (
     open && (
       <ContentBox>

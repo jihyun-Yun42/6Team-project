@@ -14,8 +14,7 @@ export const useUpdateMenu = () => {
         formData,
         {
           headers: {
-            'Content-enctype': 'multipart/form-data',
-            'Content-Disposition': 'form-data; name="fieldName"',
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
