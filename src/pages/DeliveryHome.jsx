@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { AddMenu } from '../components/Menu/AddMenu';
-import BetweenNav from '../components/BetweenNav';
-import HeaderDelivery from '../components/HeaderDelivery';
-import NavDelivery from '../components/NavDelivery';
-import OrderCoution from '../components/OrderCoution';
-import TotalFooter from '../components/TotalFooter';
-import { Card } from '../components/Card';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { AddMenu } from "../components/Menu/AddMenu";
+import BetweenNav from "../components/BetweenNav";
+import HeaderDelivery from "../components/HeaderDelivery";
+import NavDelivery from "../components/NavDelivery";
+import OrderCoution from "../components/OrderCoution";
+import TotalFooter from "../components/TotalFooter";
+import { Card } from "../components/Card";
 import {
   ModalBackground,
   ModalContent,
   ModalRoot,
   ModalTrigger,
-} from '../components/Modal';
-import { useGetMenu } from '../hooks/Menu/useGetMenu';
-import Input, { FileLabel } from '../components/Input';
-import { Test } from '../components/Test';
-import { cookies } from '../shared/cookies';
+} from "../components/Modal";
+import { useGetMenu } from "../hooks/Menu/useGetMenu";
+import Input, { FileLabel } from "../components/Input";
+import { cookies } from "../shared/cookies";
 function DeliveryHome() {
-  const ADMIN = cookies.get('userId');
-  console.log(ADMIN);
+  const ADMIN = cookies.get("userId");
   const { menuData, getMenuIsLoading } = useGetMenu();
-  const [category, setCategory] = useState('NEW');
+  const [category, setCategory] = useState("NEW");
 
   const onClickCategory = (e) => {
     setCategory(e.target.value);
@@ -30,12 +28,12 @@ function DeliveryHome() {
 
   return (
     <>
-      <HeaderDelivery name={'딜리버리'} />
+      <HeaderDelivery name={"딜리버리"} />
       <BetweenNav />
       <NavDelivery page="딜리버리" />
       <MenuArea>
         <MenuList>
-          <span style={{ color: 'black', fontSize: '40px' }}>메뉴</span>
+          <span style={{ color: "black", fontSize: "40px" }}>메뉴</span>
           <MenuBar>
             <MenuBtn value="NEW" onClick={onClickCategory}>
               신제품(NEW)
@@ -61,7 +59,9 @@ function DeliveryHome() {
           </MenuBar>
         </MenuList>
         <Tab_cont>
-          {menuData.map((item) => item.category === category && <Card item={item} />)}
+          {menuData.map(
+            (item) => item.category === category && <Card item={item} />
+          )}
         </Tab_cont>
       </MenuArea>
       {ADMIN && (
@@ -103,7 +103,7 @@ const MenuBtn = styled.button`
   border: 0px;
   background-color: transparent;
   font-size: 20px;
-  font-family: 'TmoneyRoundWindExtraBold';
+  font-family: "TmoneyRoundWindExtraBold";
   color: #b8b8b8;
   box-sizing: border-box;
   cursor: pointer;
