@@ -10,6 +10,7 @@ import { KAKAO_AUTH_URL } from '../components/KakaoLogin';
 import { FaKey, FaLock } from 'react-icons/fa';
 import Input, { FileForm } from '../components/Input';
 import { apis } from '../axios/api';
+
 function Join() {
   const nav = useNavigate();
 

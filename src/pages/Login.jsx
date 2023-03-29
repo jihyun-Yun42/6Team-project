@@ -10,6 +10,9 @@ import TotalFooter from "../components/TotalFooter";
 import { cookies } from "../shared/cookies";
 import { FaKey, FaLock } from "react-icons/fa";
 import Input from "../components/Input";
+import { KAKAO_AUTH_URL } from "../components/KakaoLogin";
+import NaverLogin from "../components/NaverLogin";
+import KakaoLogo from "../assets/kakaologin.png";
 
 function Login() {
   const navi = useNavigate();
@@ -93,9 +96,12 @@ function Login() {
               <FaLock />
               <span>간편 로그인</span>
             </TitleLogin>
-            <div>네이버로그인</div>
-            <div>카카오로그인</div>
-            <div>애플로그인</div>
+            <OauthLogin>
+              <a href={KAKAO_AUTH_URL}>
+                <KakaoLogin src={KakaoLogo} />
+              </a>
+              <NaverLogin />
+            </OauthLogin>
           </OAuthArea>
         </LoginUI>
       </LoginContainer>
@@ -106,6 +112,18 @@ function Login() {
 
 export default Login;
 
+const KakaoLogin = styled.img`
+  width: 250px;
+`;
+
+const OauthLogin = styled.div`
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;
+
 const Btns = styled.div`
   display: flex;
   gap: 10px;
@@ -113,8 +131,11 @@ const Btns = styled.div`
 `;
 
 const TitleLogin = styled.div`
+  display: flex;
+  gap: 10px;
   margin-top: 0;
   font-size: 30px;
+  padding: 10px;
 `;
 
 const LogInForm = styled.form`
