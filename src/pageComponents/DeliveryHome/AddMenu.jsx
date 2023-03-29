@@ -1,17 +1,23 @@
 import { useAddMenu } from '../../hooks/Menu/useAddMenu';
 import { useFileInput } from '../../hooks/Menu/useFileInput';
-import Button from '../Button';
-import Input, { FileForm, FileLabel } from '../Input';
+import Button from '../../components/Button';
+import Input, { FileForm, FileLabel } from '../../components/Input';
 import {
   ModalBackground,
   ModalCloseBtn,
   ModalContent,
   ModalRoot,
   ModalTrigger,
-} from '../Modal';
+} from '../../components/Modal';
+import {
+  AlertModalCloseBtn,
+  AlertModalContent,
+  AlertModalRoot,
+  AlertModalTrigger,
+} from '../../components/AlertModal';
 
 export const AddMenu = ({ children }) => {
-  const { addMenu } = useAddMenu();
+  const { addMenu, addStatue, reset } = useAddMenu();
   const newMenu = {
     title: '',
     category: '',
@@ -32,6 +38,7 @@ export const AddMenu = ({ children }) => {
         <ModalBackground />
       </ModalTrigger>
       <ModalContent>
+        <ModalCloseBtn />
         <FileForm onSubmit={submitFormHandler}>
           <FileLabel>
             사진올리기
@@ -58,8 +65,7 @@ export const AddMenu = ({ children }) => {
           />
           <select
             name="category"
-            defaultValue={'DEFAULT'}
-            value={this}
+            value="DEFAULT"
             onChange={onChangeHandler}
             style={{
               border: '1px solid lightgray',
@@ -80,9 +86,46 @@ export const AddMenu = ({ children }) => {
             <option value="drink">음료&디저트</option>
             <option value="dog">독퍼</option>
           </select>
-          {/* <ModalCloseBtn type="submit"> */}
-          <Button type="submit">제출</Button>
-          {/* </ModalCloseBtn> */}
+          <AlertModalRoot>
+            <AlertModalTrigger>
+              <Button type="button">제출하기</Button>
+            </AlertModalTrigger>
+            <AlertModalContent>
+              <AlertModalCloseBtn />
+              {addStatue === 'idle' ? (
+                <>
+                  <div>정말 작성하시겠습니까?</div>
+                  <Button type="button" onClick={submitFormHandler} bgcolor="red">
+                    제출
+                  </Button>
+                  <AlertModalTrigger>
+                    <Button>취소</Button>
+                  </AlertModalTrigger>
+                </>
+              ) : addStatue === 'loading' ? (
+                <>로딩중...</>
+              ) : addStatue === 'success' ? (
+                <>
+                  <div>작성이 완료되었습니다.</div>
+                  <ModalTrigger>
+                    <Button>완료</Button>
+                  </ModalTrigger>
+                </>
+              ) : (
+                <>
+                  <div>작성에 실패하였습니다.</div>
+                  <ModalTrigger>
+                    <Button>완료</Button>
+                  </ModalTrigger>
+                  <AlertModalTrigger>
+                    <Button bgcolor="red" onClick={() => reset()}>
+                      돌아가기
+                    </Button>
+                  </AlertModalTrigger>
+                </>
+              )}
+            </AlertModalContent>
+          </AlertModalRoot>
         </FileForm>
       </ModalContent>
     </ModalRoot>

@@ -5,7 +5,11 @@ import { keys } from '../../utils/createQueryKey';
 export const useUpdateMenu = () => {
   const queryClinet = useQueryClient();
 
-  const { mutate: updateMenu } = useMutation({
+  const {
+    mutate: updateMenu,
+    status: updateStatus,
+    reset,
+  } = useMutation({
     // mutationFn: async ({ formData, title, category, price, id }) => {
     mutationFn: async ({ formData, id }) => {
       const { data } = await api.patch(
@@ -23,10 +27,7 @@ export const useUpdateMenu = () => {
     onSuccess: () => {
       queryClinet.invalidateQueries({ queryKey: keys.GET_MENU }); // GET 요청을 다시함
     },
-    onError: (error) => {
-      console.log(error);
-    },
   });
 
-  return { updateMenu };
+  return { updateMenu, updateStatus, reset };
 };

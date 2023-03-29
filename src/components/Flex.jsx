@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Flex = ({ children, fd, ai, ac, fw, jc }) => {
+export const Flex = ({ children, fd, ai, ac, fw, jc, gap }) => {
   return (
-    <Div fd={fd} ai={ai} ac={ac} fw={fw} jc={jc}>
+    <Div fd={fd} ai={ai} ac={ac} fw={fw} jc={jc} gap={gap}>
       {children}
     </Div>
   );
@@ -15,4 +15,5 @@ const Div = styled.div`
   align-items: ${({ ai }) => ai};
   align-content: ${({ ac }) => ac};
   flex-wrap: ${({ fw }) => fw};
+  gap: ${({ gap }) => gap}px;
 `;
