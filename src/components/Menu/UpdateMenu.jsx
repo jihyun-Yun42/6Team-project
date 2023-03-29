@@ -15,22 +15,22 @@ export const UpdateMenu = ({ item }) => {
   };
 
   const [inputValue, onChangeHandler, fileInputHandler] = useFileInput(editMenu);
-  console.log(inputValue);
 
   const submitFormHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    // formData.append('title', inputValue.title);
-    // formData.append('category', inputValue.category);
-    // formData.append('price', inputValue.price);
+    formData.append('title', inputValue.title);
+    formData.append('category', inputValue.category);
+    formData.append('price', inputValue.price);
     formData.append('file', inputValue.file);
-    updateMenu({
-      formData,
-      title: inputValue.title,
-      category: inputValue.category,
-      price: inputValue.price,
-      id: inputValue.id,
-    });
+    // updateMenu({
+    //   formData,
+    //   title: inputValue.title,
+    //   category: inputValue.category,
+    //   price: inputValue.price,
+    //   id: inputValue.id,
+    // });
+    updateMenu({ formData, id: editMenu.id });
   };
   return (
     <FileForm onSubmit={submitFormHandler}>
