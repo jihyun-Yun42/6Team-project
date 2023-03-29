@@ -49,7 +49,7 @@ const ContentBox = styled.div`
   left: 50%;
   right: 50%;
   transform: translate(-50%, 50%);
-  padding: 5%;
+  padding: 3%;
   border-radius: 30px;
   box-sizing: border-box;
 `;

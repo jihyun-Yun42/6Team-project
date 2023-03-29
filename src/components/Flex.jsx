@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Flex = ({ children, fd, ai, ac, fw, jc, gap }) => {
+export const Flex = ({ children, fd, ai, ac, fw, jc, gap, ...rest }) => {
   return (
-    <Div fd={fd} ai={ai} ac={ac} fw={fw} jc={jc} gap={gap}>
+    <Div fd={fd} ai={ai} ac={ac} fw={fw} jc={jc} gap={gap} {...rest}>
       {children}
     </Div>
   );

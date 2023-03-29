@@ -2,8 +2,8 @@ import { useFileInput } from '../../hooks/Menu/useFileInput';
 import { useUpdateMenu } from '../../hooks/Menu/useUpdateMenu';
 import Input, { FileForm, FileLabel } from '../../components/Input';
 import {
-  ModalAction,
   ModalBackground,
+  ModalCloseBtn,
   ModalContent,
   ModalRoot,
   ModalTrigger,
@@ -14,11 +14,11 @@ import {
   AlertModalTrigger,
 } from '../../components/AlertModal';
 import Button from '../../components/Button';
+import { Flex } from '../../components/Flex';
 
 export const UpdateMenu = ({ item, children }) => {
   const { updateMenu, updateStatus, reset } = useUpdateMenu();
 
-  console.log(updateStatus);
   const editMenu = {
     id: item.id,
     title: item.title,
@@ -40,6 +40,7 @@ export const UpdateMenu = ({ item, children }) => {
         <ModalBackground />
       </ModalTrigger>
       <ModalContent>
+        <ModalCloseBtn />
         <FileForm>
           <FileLabel>
             사진올리기
@@ -92,36 +93,41 @@ export const UpdateMenu = ({ item, children }) => {
               <Button type="button">제출하기</Button>
             </AlertModalTrigger>
             <AlertModalContent>
+              <ModalCloseBtn onClick={() => reset()} />
               {updateStatus === 'idle' ? (
                 <>
                   <div>정말 수정하시겠습니까?</div>
-                  <Button type="button" onClick={submitFormHandler} bgcolor="red">
-                    제출
-                  </Button>
-                  <AlertModalTrigger>
-                    <Button>취소</Button>
-                  </AlertModalTrigger>
+                  <Flex gap={10} ai="flex-start" style={{ marginTop: '30px' }}>
+                    <Button type="button" onClick={submitFormHandler} bgcolor="red">
+                      제출
+                    </Button>
+                    <AlertModalTrigger>
+                      <Button>취소</Button>
+                    </AlertModalTrigger>
+                  </Flex>
                 </>
               ) : updateStatus === 'loading' ? (
                 <>로딩중...</>
               ) : updateStatus === 'success' ? (
-                <>
+                <Flex gap={40} fd="column" ai="flex-start">
                   <div>수정이 완료되었습니다.</div>
                   <ModalTrigger>
-                    <Button>완료</Button>
+                    <Button onClick={() => reset()}>완료</Button>
                   </ModalTrigger>
-                </>
+                </Flex>
               ) : (
                 <>
                   <div>수정에 실패하였습니다.</div>
-                  <ModalTrigger>
-                    <Button>완료</Button>
-                  </ModalTrigger>
-                  <AlertModalTrigger>
-                    <Button bgcolor="red" onClick={() => reset()}>
-                      돌아가기
-                    </Button>
-                  </AlertModalTrigger>
+                  <Flex gap={10} ai="flex-start" style={{ marginTop: '30px' }}>
+                    <ModalTrigger>
+                      <Button onClick={() => reset()}>완료</Button>
+                    </ModalTrigger>
+                    <AlertModalTrigger>
+                      <Button bgcolor="red" onClick={() => reset()}>
+                        돌아가기
+                      </Button>
+                    </AlertModalTrigger>
+                  </Flex>
                 </>
               )}
             </AlertModalContent>

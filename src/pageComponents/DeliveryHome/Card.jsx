@@ -1,10 +1,10 @@
 import React from 'react';
 import { FiX } from 'react-icons/fi';
 import { RxUpdate } from 'react-icons/rx';
-import { UpdateMenu } from '../pageComponents/DeliveryHome/UpdateMenu';
-import { useDeleteMenu } from '../hooks/Menu/useDeleteMenu';
-import { cookies } from '../shared/cookies';
-import * as delivery from '../pageComponents/DeliveryHome/StyledDelivery';
+import { UpdateMenu } from './UpdateMenu';
+import { useDeleteMenu } from '../../hooks/Menu/useDeleteMenu';
+import { cookies } from '../../shared/cookies';
+import * as delivery from './StyledDelivery';
 
 export const Card = ({ item }) => {
   const ADMIN = cookies.get('userId');
