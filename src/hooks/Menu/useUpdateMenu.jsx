@@ -6,10 +6,12 @@ export const useUpdateMenu = () => {
   const queryClinet = useQueryClient();
 
   const { mutate: updateMenu } = useMutation({
-    mutationFn: async ({ formData, title, category, price, id }) => {
+    // mutationFn: async ({ formData, title, category, price, id }) => {
+    mutationFn: async ({ formData, id }) => {
       const { data } = await api.patch(
         `/api/update/${id}`,
-        { file: formData, title, category, price },
+        // { formData, title, category, price },
+        formData,
         {
           headers: {
             'Content-Type': 'multipart/form-data',
