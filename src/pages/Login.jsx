@@ -13,7 +13,7 @@ function Login() {
     if (token) {
       navi("/deliveryHome");
     }
-  }, []);
+  }, [navi]);
 
   return (
     <>
