@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
 import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc';
+import * as Home from './StyledHome';
 
 const Banner = () => {
   const index = useRef(0);
@@ -33,41 +33,16 @@ const Banner = () => {
   };
 
   return (
-    <Slider>
-      <div>
-        <BannerImg src={images[index.current]} />
-        <BannerBtn onClick={prevImage} style={{ left: 0 }}>
-          <VscChevronLeft />
-        </BannerBtn>
-        <BannerBtn onClick={nextImage} style={{ right: 0 }}>
-          <VscChevronRight />
-        </BannerBtn>
-      </div>
-    </Slider>
+    <Home.Slider>
+      <Home.BannerImg src={images[index.current]} />
+      <Home.BannerBtn onClick={prevImage} style={{ left: 0 }}>
+        <VscChevronLeft />
+      </Home.BannerBtn>
+      <Home.BannerBtn onClick={nextImage} style={{ right: 0 }}>
+        <VscChevronRight />
+      </Home.BannerBtn>
+    </Home.Slider>
   );
 };
 
-const Slider = styled.div`
-  position: relative;
-`;
-const BannerImg = styled.img`
-  margin-top: 130px;
-  width: 100%;
-  float: left;
-  max-height: 100%;
-  z-index: 2;
-  transform: translateX(1000);
-  transition: all 0.3s ease-out;
-`;
-
-const BannerBtn = styled.button`
-  border: 0px;
-  background-color: transparent;
-  position: absolute;
-  top: 37vh;
-  font-size: 40px;
-  z-index: 3;
-  color: #fff;
-  cursor: pointer;
-`;
 export default Banner;

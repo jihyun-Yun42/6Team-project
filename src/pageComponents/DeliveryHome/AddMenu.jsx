@@ -1,14 +1,13 @@
 import { useAddMenu } from '../../hooks/Menu/useAddMenu';
 import { useFileInput } from '../../hooks/Menu/useFileInput';
-import Button from '../Button';
-import Input, { FileForm, FileLabel } from '../Input';
+import Button from '../../components/Button';
+import Input, { FileForm, FileLabel } from '../../components/Input';
 import {
   ModalBackground,
-  ModalCloseBtn,
   ModalContent,
   ModalRoot,
   ModalTrigger,
-} from '../Modal';
+} from '../../components/Modal';
 
 export const AddMenu = ({ children }) => {
   const { addMenu } = useAddMenu();
@@ -58,8 +57,7 @@ export const AddMenu = ({ children }) => {
           />
           <select
             name="category"
-            defaultValue={'DEFAULT'}
-            value={this}
+            value="DEFAULT"
             onChange={onChangeHandler}
             style={{
               border: '1px solid lightgray',

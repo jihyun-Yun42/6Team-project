@@ -26,7 +26,7 @@ const Background = styled.div`
 `;
 
 export const ModalTrigger = ({ children }) => {
-  const { open, setOpen } = useContext(Context);
+  const { setOpen } = useContext(Context);
   return <Modalonoff onClick={() => setOpen((pre) => !pre)}>{children}</Modalonoff>;
 };
 
@@ -36,30 +36,8 @@ const Modalonoff = styled.div`
 
 export const ModalContent = ({ children }) => {
   const { open, setOpen } = useContext(Context);
-  return (
-    open && (
-      <ContentBox>
-        {/* <BtnCard
-          onClick={() => {
-            setOpen((pre) => !pre);
-          }}
-        >
-          <FiX />
-        </BtnCard> */}
-        {children}
-      </ContentBox>
-    )
-  );
+  return open && <ContentBox>{children}</ContentBox>;
 };
-const BtnCard = styled.button`
-  position: absolute;
-  border: 0;
-  top: 8px;
-  right: 8px;
-  background-color: transparent;
-  font-size: 30px;
-  cursor: pointer;
-`;
 
 const ContentBox = styled.div`
   width: 400px;
@@ -80,7 +58,32 @@ export const ModalCloseBtn = ({ children, ...rest }) => {
   const { setOpen } = useContext(Context);
   return (
     <BtnCard onClick={() => setOpen((pre) => !pre)} {...rest}>
-      {children}
+      <FiX />
     </BtnCard>
+  );
+};
+const BtnCard = styled.button`
+  position: absolute;
+  border: 0;
+  top: 8px;
+  right: 8px;
+  background-color: transparent;
+  font-size: 30px;
+  cursor: pointer;
+`;
+
+export const ModalAction = ({ children, ...rest }) => {
+  const { setOpen } = useContext(Context);
+  return (
+    <div
+      {...rest}
+      onClick={(e) => {
+        e.preventDefault();
+        rest.onClick();
+        setOpen((pre) => !pre);
+      }}
+    >
+      {children}
+    </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
-import Banner from '../components/Banner';
-import Nav from '../components/Nav';
+import Banner from '../pageComponents/HomePage/Banner';
+import Nav from '../pageComponents/HomePage/Nav';
 import YouTube from 'react-youtube';
 import TotalFooter from '../components/TotalFooter';
 
@@ -23,7 +23,6 @@ function Home() {
           }}
         />
       </div>
-
       <TotalFooter main={'main'} />
     </>
   );

@@ -20,7 +20,7 @@ export const useFileInput = (initialState, mutate, id) => {
     setInputValue({ ...inputValue, file: e.target.files[0] });
   };
   const submitFormHandler = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const requestDto = new Blob(
       [
         JSON.stringify({
