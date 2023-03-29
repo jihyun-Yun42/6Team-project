@@ -13,7 +13,7 @@ import Button from '../components/Button';
 function DeliveryHome() {
   const ADMIN = cookies.get('userId');
   const { menuData, getMenuIsLoading } = useGetMenu();
-  const [category, setCategory] = useState('NEW');
+  const [category, setCategory] = useState("NEW");
 
   const onClickCategory = (e) => {
     setCategory(e.target.value);
@@ -22,12 +22,12 @@ function DeliveryHome() {
 
   return (
     <>
-      <HeaderDelivery name={'딜리버리'} />
+      <HeaderDelivery name={"딜리버리"} />
       <BetweenNav />
       <NavDelivery page="딜리버리" />
       <MenuArea>
         <MenuList>
-          <span style={{ color: 'black', fontSize: '40px' }}>메뉴</span>
+          <span style={{ color: "black", fontSize: "40px" }}>메뉴</span>
           <MenuBar>
             <MenuBtn value="NEW" onClick={onClickCategory}>
               신제품(NEW)
@@ -97,7 +97,7 @@ const MenuBtn = styled.button`
   border: 0px;
   background-color: transparent;
   font-size: 20px;
-  font-family: 'TmoneyRoundWindExtraBold';
+  font-family: "TmoneyRoundWindExtraBold";
   color: #b8b8b8;
   box-sizing: border-box;
   cursor: pointer;

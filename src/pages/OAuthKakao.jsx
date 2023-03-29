@@ -5,6 +5,9 @@ import { cookies } from "../shared/cookies";
 import Spinner from "../assets/spinner.gif";
 import { apis } from "../axios/api";
 import axios from "axios";
+import Cookies from "universal-cookie";
+import jwtDecode from "jwt-decode";
+
 
 function OAuthKakao() {
   const nav = useNavigate();
@@ -15,7 +18,12 @@ function OAuthKakao() {
       const response = await axios.get(
         `http://3.36.52.202:8080/OAuth/Kakao/?code=${code}`
       );
-      console.log("res", response);
+      const token = response.headers.authorization.substr(7);
+      const decodeToken = jwtDecode(token);
+      cookies.set("userId", decodeToken.nickname, { path: "/" });
+      cookies.set("token", token, {
+        path: "/",
+      });
       nav("/deliveryHome");
     } catch (e) {
       console.log("error", e);
