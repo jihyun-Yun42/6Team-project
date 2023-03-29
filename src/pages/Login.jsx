@@ -12,6 +12,7 @@ import { FaKey, FaLock } from "react-icons/fa";
 import Input from "../components/Input";
 import { KAKAO_AUTH_URL } from "../components/KakaoLogin";
 import NaverLogin from "../components/NaverLogin";
+import KakaoLogo from "../assets/kakaologin.png";
 
 function Login() {
   const navi = useNavigate();
@@ -96,9 +97,9 @@ function Login() {
               <span>간편 로그인</span>
             </TitleLogin>
             <OauthLogin>
-              <KakaoA href={KAKAO_AUTH_URL}>
-                <span>카카오계정 로그인</span>
-              </KakaoA>
+              <a href={KAKAO_AUTH_URL}>
+                <KakaoLogin src={KakaoLogo} />
+              </a>
               <NaverLogin />
             </OauthLogin>
           </OAuthArea>
@@ -111,27 +112,16 @@ function Login() {
 
 export default Login;
 
+const KakaoLogin = styled.img`
+  width: 250px;
+`;
+
 const OauthLogin = styled.div`
   height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-`;
-
-const KakaoA = styled.a`
-  color: #3c1e20;
-  background-color: #ffeb00;
-  position: relative;
-  display: block;
-  height: 64px;
-  width: 300px;
-  padding: 5px 5px 5px 5px;
-  font-size: 1.25rem;
-  line-height: 54px;
-  text-align: center;
-  border-radius: 10px;
-  text-decoration: none;
 `;
 
 const Btns = styled.div`

@@ -12,8 +12,8 @@ function OAuthKakao() {
   console.log("code", code);
   const kakaoLogin = async () => {
     try {
-      const response = await axios(
-        `http://localhost:3000/OAuth/Kakao/?code=${code}`
+      const response = await axios.get(
+        `http://3.36.52.202:8080/OAuth/Kakao/?code=${code}`
       );
       console.log("res", response);
       nav("/deliveryHome");
