@@ -1,15 +1,8 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-function Input({
-  InputStyle,
-  type,
-  placeholder,
-  value,
-  name,
-  onChange,
-  inputRef,
-}) {
+function Input({ InputStyle, type, placeholder, value, name, onChange, inputRef }) {
+
   return (
     <StyledInput
       InputStyle={InputStyle}

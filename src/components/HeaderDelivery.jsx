@@ -1,17 +1,18 @@
-import styled from "styled-components";
-import Button from "../components/Button";
-import LogoImg from "../assets/burgerkingLogo.png";
-import { useNavigate } from "react-router";
-import { Flex } from "./Flex";
-import { cookies } from "../shared/cookies";
-import { FaUserCircle } from "react-icons/fa";
+import styled from 'styled-components';
+import Button from '../components/Button';
+import LogoImg from '../assets/burgerkingLogo.png';
+import { useNavigate } from 'react-router';
+import { Flex } from './Flex';
+import { cookies } from '../shared/cookies';
+import { FaUserCircle } from 'react-icons/fa';
 function HeaderDelivery({ name }) {
   const navi = useNavigate();
-  const token = cookies.get("token");
-  const userID = cookies.get("userId");
+  const token = cookies.get('token');
+  const userID = cookies.get('userId');
   const logOutHandler = () => {
-    cookies.remove("token");
-    navi("/deliveryHome");
+    cookies.remove('token');
+    cookies.remove('userId');
+    navi('/deliveryHome');
   };
   return (
     <>
@@ -21,16 +22,12 @@ function HeaderDelivery({ name }) {
             <div>
               <UtilWrap>
                 <UtilA>
-                  <DeliveryText onClick={() => navi("/")}>
-                    브랜드홈
-                  </DeliveryText>
+                  <DeliveryText onClick={() => navi('/')}>브랜드홈</DeliveryText>
                 </UtilA>
                 {token ? (
                   <>
                     <UtilA>
-                      <DeliveryText onClick={logOutHandler}>
-                        로그아웃
-                      </DeliveryText>
+                      <DeliveryText onClick={logOutHandler}>로그아웃</DeliveryText>
                     </UtilA>
                     <UtilA>
                       <DeliveryText>MY킹</DeliveryText>
@@ -38,9 +35,7 @@ function HeaderDelivery({ name }) {
                   </>
                 ) : (
                   <UtilA>
-                    <DeliveryText onClick={() => navi("/login")}>
-                      로그인
-                    </DeliveryText>
+                    <DeliveryText onClick={() => navi('/login')}>로그인</DeliveryText>
                   </UtilA>
                 )}
                 <UtilA>
@@ -49,7 +44,7 @@ function HeaderDelivery({ name }) {
               </UtilWrap>
               <Flex ai="flex-end" jc="space-between">
                 <LogoH1>
-                  <LogoImage src={`${LogoImg}`} onClick={() => navi("/")} />
+                  <LogoImage src={`${LogoImg}`} onClick={() => navi('/')} />
                   <span>{name}</span>
                 </LogoH1>
                 {token ? (
@@ -67,7 +62,7 @@ function HeaderDelivery({ name }) {
                   </UserInfo>
                 ) : (
                   <Join>
-                    <Button brown onClick={() => navi("/join")}>
+                    <Button brown onClick={() => navi('/join')}>
                       회원가입
                     </Button>
                   </Join>
@@ -84,7 +79,7 @@ function HeaderDelivery({ name }) {
 export default HeaderDelivery;
 
 const UserName = styled.p`
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 `;
 
 const UserImage = styled.div`

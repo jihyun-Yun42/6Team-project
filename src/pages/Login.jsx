@@ -1,24 +1,24 @@
-import jwtDecode from "jwt-decode";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import styled from "styled-components";
-import { apis } from "../axios/api";
-import Button from "../components/Button";
-import HeaderDelivery from "../components/HeaderDelivery";
-import NavDelivery from "../components/NavDelivery";
-import TotalFooter from "../components/TotalFooter";
-import { cookies } from "../shared/cookies";
-import { FaKey, FaLock } from "react-icons/fa";
-import Input from "../components/Input";
-import { KAKAO_AUTH_URL } from "../components/KakaoLogin";
-import NaverLogin from "../components/NaverLogin";
-import KakaoLogo from "../assets/kakaologin.png";
+import jwtDecode from 'jwt-decode';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
+import styled from 'styled-components';
+import { apis } from '../axios/api';
+import Button from '../components/Button';
+import HeaderDelivery from '../components/HeaderDelivery';
+import NavDelivery from '../components/NavDelivery';
+import TotalFooter from '../components/TotalFooter';
+import { cookies } from '../shared/cookies';
+import { FaKey, FaLock } from 'react-icons/fa';
+import Input from '../components/Input';
+import { KAKAO_AUTH_URL } from '../components/KakaoLogin';
+import NaverLogin from '../components/NaverLogin';
+import KakaoLogo from '../assets/kakaologin.png';
 
 function Login() {
   const navi = useNavigate();
   const [user, setUser] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
   const changeInputHandler = (event) => {
     const { value, name } = event.target;
@@ -27,16 +27,23 @@ function Login() {
     });
   };
 
+  const inputRef = useRef();
+
+  console.log(inputRef.current);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
-      const result = await apis.post("/api/login", user);
-      const token = result.headers.authorization.split(" ")[1];
+      const result = await apis.post('/api/login', user);
+      const token = result.headers.authorization.split(' ')[1];
       const decodeToken = jwtDecode(token);
-      cookies.set("token", token, { path: "/" });
-      cookies.set("userId", decodeToken.auth, { path: "/" });
-      alert("로그인성공");
-      navi("/deliveryHome");
+      cookies.set('token', token, { path: '/' });
+      cookies.set('userId', decodeToken.auth, { path: '/' });
+      alert('로그인성공');
+      navi('/deliveryHome');
     } catch (event) {
       alert("ErrorEvent", event);
     }
@@ -52,9 +59,9 @@ function Login() {
   return (
     <>
       <HeaderDelivery />
-      <NavDelivery margintop={"168px"} />
+      <NavDelivery margintop={'168px'} />
       <LoginContainer>
-        <LoinTitle color={"#e22219"}>YOUR WAY</LoinTitle>
+        <LoinTitle color={'#e22219'}>YOUR WAY</LoinTitle>
         <LoinTitle>어서오세요! 버거킹입니다.</LoinTitle>
         <LoginUI>
           <LoginArea>
@@ -64,7 +71,8 @@ function Login() {
             </TitleLogin>
             <LogInForm onSubmit={submitHandler}>
               <Input
-                InputStyle={"LoginStyle"}
+                inputRef={inputRef}
+                InputStyle={'LoginStyle'}
                 type="text"
                 placeholder="아이디(이메일)"
                 value={user.username}
@@ -72,7 +80,7 @@ function Login() {
                 onChange={changeInputHandler}
               />
               <Input
-                InputStyle={"LoginStyle"}
+                InputStyle={'LoginStyle'}
                 type="password"
                 placeholder="비밀번호"
                 value={user.password}
@@ -85,7 +93,7 @@ function Login() {
                 </Button>
                 <Button
                   type="button"
-                  onClick={() => navi("/join")}
+                  onClick={() => navi('/join')}
                   bgcolor="brown"
                   boxstyle="box"
                 >
