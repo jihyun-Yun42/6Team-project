@@ -32,6 +32,7 @@ function Login() {
   useEffect(() => {
     inputRef.current.focus();
   }, []);
+
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
@@ -43,9 +44,16 @@ function Login() {
       alert('로그인성공');
       navi('/deliveryHome');
     } catch (event) {
-      console.log('ErrorEvent', event);
+      alert("ErrorEvent", event);
     }
   };
+
+  useEffect(() => {
+    const token = cookies.get("token");
+    if (token) {
+      navi("/deliveryHome");
+    }
+  }, []);
 
   return (
     <>

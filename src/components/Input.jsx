@@ -1,7 +1,8 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
+import React from "react";
+import styled, { css } from "styled-components";
 
 function Input({ InputStyle, type, placeholder, value, name, onChange, inputRef }) {
+
   return (
     <StyledInput
       InputStyle={InputStyle}
@@ -39,13 +40,13 @@ const StyledInput = styled.input`
   }
   ${({ InputStyle }) => {
     switch (InputStyle) {
-      case 'LoginStyle':
+      case "LoginStyle":
         return css`
           height: 66px;
         `;
       default:
         return css`
-          font-family: 'TmoneyRoundWindExtraBold';
+          font-family: "TmoneyRoundWindExtraBold";
           font-size: 20px;
         `;
     }
