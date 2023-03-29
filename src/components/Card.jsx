@@ -8,8 +8,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { keys } from '../utils/createQueryKey';
 import { UpdateMenu } from './Menu/UpdateMenu';
 import { useDeleteMenu } from '../hooks/Menu/useDeleteMenu';
+import { cookies } from '../shared/cookies';
 
 export const Card = ({ item }) => {
+  const ADMIN = cookies.get('userId');
   const { deleteMenu } = useDeleteMenu();
   console.log(item.url);
   return (
@@ -17,23 +19,27 @@ export const Card = ({ item }) => {
       <ModalRoot>
         <ModalTrigger>
           <ModalBackground />
-
-          <BtnCard style={{ right: '25px' }}>
-            <RxUpdate />
-          </BtnCard>
+          {ADMIN && (
+            <BtnCard style={{ right: '25px' }}>
+              <RxUpdate />
+            </BtnCard>
+          )}
         </ModalTrigger>
         <ModalContent>
           <UpdateMenu item={item} />
         </ModalContent>
       </ModalRoot>
-      <BtnCard
-        style={{ right: 0 }}
-        onClick={() => {
-          deleteMenu(item.id);
-        }}
-      >
-        <FiX />
-      </BtnCard>
+      {ADMIN && (
+        <BtnCard
+          style={{ right: 0 }}
+          onClick={() => {
+            deleteMenu(item.id);
+          }}
+        >
+          <FiX />
+        </BtnCard>
+      )}
+
       <CardImg style={{ backgroundImage: `url(${item.url})` }} />
       <CardBurgerName>{item.title}</CardBurgerName>
       <CardBurgerPrice>₩{item.price}~</CardBurgerPrice>

@@ -16,7 +16,10 @@ import {
 import { useGetMenu } from '../hooks/Menu/useGetMenu';
 import Input, { FileLabel } from '../components/Input';
 import { Test } from '../components/Test';
+import { cookies } from '../shared/cookies';
 function DeliveryHome() {
+  const ADMIN = cookies.get('userId');
+  console.log(ADMIN);
   const { menuData, getMenuIsLoading } = useGetMenu();
   const [category, setCategory] = useState('NEW');
 
@@ -61,9 +64,12 @@ function DeliveryHome() {
           {menuData.map((item) => item.category === category && <Card item={item} />)}
         </Tab_cont>
       </MenuArea>
-      <AddMenu>
-        <button>메뉴</button>
-      </AddMenu>
+      {ADMIN && (
+        <AddMenu>
+          <button>메뉴</button>
+        </AddMenu>
+      )}
+
       <OrderCoution />
       <TotalFooter />
     </>

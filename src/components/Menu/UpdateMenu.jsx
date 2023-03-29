@@ -18,11 +18,26 @@ export const UpdateMenu = ({ item }) => {
 
   const submitFormHandler = (e) => {
     e.preventDefault();
+    const requestDto = new Blob(
+      [
+        JSON.stringify({
+          title: inputValue.title,
+          category: inputValue.category,
+          price: inputValue.price,
+        }),
+      ],
+      {
+        type: 'application/json',
+      }
+    );
     const formData = new FormData();
-    formData.append('title', inputValue.title);
-    formData.append('category', inputValue.category);
-    formData.append('price', inputValue.price);
+    // formData.append('title', inputValue.title);
+    // formData.append('category', inputValue.category);
+    // formData.append('price', inputValue.price);
     formData.append('file', inputValue.file);
+    formData.append('requestDto', requestDto);
+    console.log('key : file', formData.get('file'));
+    console.log('key : requestDto', formData.get('requestDto'));
     // updateMenu({
     //   formData,
     //   title: inputValue.title,
