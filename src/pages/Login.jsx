@@ -29,7 +29,6 @@ function Login() {
 
   const inputRef = useRef();
 
-  console.log(inputRef.current);
   useEffect(() => {
     inputRef.current.focus();
   }, []);
