@@ -1,20 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import { FaKey, FaLock } from "react-icons/fa";
-import { apis } from "../../axios/api";
-import { useNavigate } from "react-router-dom";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import { cookies } from "../../shared/cookies";
-import * as Join from "./StyledJoin";
+import React, { useEffect, useRef, useState } from 'react';
+import { FaKey, FaLock } from 'react-icons/fa';
+import { apis } from '../../axios/api';
+import { useNavigate } from 'react-router-dom';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import { cookies } from '../../shared/cookies';
+import * as Join from './StyledJoin';
 
 function JoinDelivery() {
   const nav = useNavigate();
   const inputRef = useRef();
   const [signupUser, setSignupUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-    nickname: "",
+    username: '',
+    email: '',
+    password: '',
+    nickname: '',
   });
 
   const changeInputHandler = (event) => {
@@ -27,14 +27,14 @@ function JoinDelivery() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await apis.post("/api/sigup", signupUser);
+      await apis.post('/api/signup', signupUser);
+      nav('/login');
     } catch (e) {
-      console.log("error", e);
+      console.log('error', e);
     }
   };
 
-  const pwCheck =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/;
+  const pwCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/;
   const nicknameCheck = /^[a-zA-Z가-힣0-9]{2,16}$/;
   const usernameCheck = /^[a-z0-9]{4,10}$/;
 
@@ -46,9 +46,9 @@ function JoinDelivery() {
 
   useEffect(() => {
     inputRef.current.focus();
-    const token = cookies.get("token");
+    const token = cookies.get('token');
     if (token) {
-      nav("/deliveryHome");
+      nav('/deliveryHome');
     }
   }, [nav]);
   return (
@@ -58,7 +58,7 @@ function JoinDelivery() {
           <Join.Pagetit02>환영합니다!</Join.Pagetit02>
           <Join.Txtwelcome>
             <p>
-              이메일 주소 혹은 sns 계정으로 간편하게{" "}
+              이메일 주소 혹은 sns 계정으로 간편하게{' '}
               <Join.StrongRed>회원가입</Join.StrongRed>
               하세요!
             </p>
@@ -102,8 +102,7 @@ function JoinDelivery() {
                       <Join.Pass>사용 가능합니다</Join.Pass>
                     ) : (
                       <Join.Rejects>
-                        4~10글자 알파벳 소문자(a~z), 숫자(0~9)만 입력
-                        가능합니다.
+                        4~10글자 알파벳 소문자(a~z), 숫자(0~9)만 입력 가능합니다.
                       </Join.Rejects>
                     )}
                   </div>
@@ -124,8 +123,7 @@ function JoinDelivery() {
                       <Join.Pass>사용 가능합니다</Join.Pass>
                     ) : (
                       <Join.Rejects>
-                        8~15글자, 글자 1개, 숫자 1개, 특수문자 1개 꼭
-                        입력해야합니다.
+                        8~15글자, 글자 1개, 숫자 1개, 특수문자 1개 꼭 입력해야합니다.
                       </Join.Rejects>
                     )}
                   </div>
@@ -146,15 +144,14 @@ function JoinDelivery() {
                       <Join.Pass>사용 가능합니다</Join.Pass>
                     ) : (
                       <Join.Rejects>
-                        2자 이상 16자 이하, 영어 또는 숫자 또는 한글로 구성되야
-                        합니다
+                        2자 이상 16자 이하, 영어 또는 숫자 또는 한글로 구성되야 합니다
                       </Join.Rejects>
                     )}
                   </div>
                 </div>
               </Join.SignupBox>
               {showbutton ? (
-                <div style={{ marginTop: "20px" }}>
+                <div style={{ marginTop: '20px' }}>
                   <Button bgcolor="red" type="submit" boxstyle="box">
                     회원가입
                   </Button>
@@ -162,12 +159,6 @@ function JoinDelivery() {
               ) : null}
             </Join.SignupForm>
           </Join.Login>
-          <Join.LoginSimple>
-            <Join.TitleLogin>
-              <FaLock />
-              <span>간편 회원가입</span>
-            </Join.TitleLogin>
-          </Join.LoginSimple>
         </Join.LoginUi>
       </Join.JoinContainer>
     </Join.JoinWrap>
