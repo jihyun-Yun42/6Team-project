@@ -12,7 +12,6 @@ export const useAddMenu = () => {
     reset,
   } = useMutation({
     mutationFn: async (payload) => {
-      console.log(payload);
       const { data } = await api.post('/api/upload', payload.formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

@@ -8,7 +8,6 @@ export const useDeleteMenu = () => {
 
   const { mutate: deleteMenu } = useMutation({
     mutationFn: async (id) => {
-      console.log(id);
       await api.delete(`/api/delete/${id}`);
     },
     onSuccess: () => {
