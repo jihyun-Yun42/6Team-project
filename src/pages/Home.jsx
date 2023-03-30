@@ -11,7 +11,7 @@ function Home() {
       <div style={{ margin: '0 auto', maxWidth: '1500px' }}>
         <Banner />
         <YouTube
-          // videoId="85jrGITDPHc"
+          videoId="85jrGITDPHc"
           opts={{
             width: '100%',
             height: '600px',
