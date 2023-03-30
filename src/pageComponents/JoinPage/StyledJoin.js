@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Pass = styled.span`
   font-size: 13px;
@@ -30,7 +30,6 @@ const LoginSimple = styled.div`
 const Login = styled.div`
   width: 50%;
   min-width: 530px;
-  border-right: 3px solid #c5c1c1;
   float: left;
 `;
 

@@ -8,7 +8,7 @@ import { useGetMenu } from '../../hooks/Menu/useGetMenu';
 import * as delivery from './StyledDelivery';
 
 export const MenuArea = () => {
-  const ADMIN = cookies.get('userId');
+  const userId = cookies.get('userId');
   const [category, setCategory] = useState('NEW');
   const { menuData, getMenuIsLoading } = useGetMenu();
 
@@ -45,7 +45,7 @@ export const MenuArea = () => {
           </delivery.MenuBtn>
         </Flex>
       </delivery.MenuList>
-      {ADMIN && (
+      {userId === 'ADMIN' && (
         <AddMenu>
           <Button>메뉴추가</Button>
         </AddMenu>
