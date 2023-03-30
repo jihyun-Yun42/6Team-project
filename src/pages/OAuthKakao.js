@@ -21,7 +21,7 @@ function OAuthKakao() {
         path: "/",
       });
       nav("/deliveryHome");
-      window.location.reload();
+      // window.location.reload();
     } catch (e) {
       console.log("error", e);
       alert(e);
