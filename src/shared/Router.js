@@ -18,12 +18,12 @@ function Router() {
     {
       pathname: "/deliveryHome",
       element: <DeliveryHome></DeliveryHome>,
-      isPublic: false,
+      isPublic: true,
     },
     {
       pathname: "/storeSearch",
       element: <StoreSearch></StoreSearch>,
-      isPublic: false,
+      isPublic: true,
     },
     // {
     //   pathname: "/oauth/kakao",
